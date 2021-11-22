@@ -1,4 +1,4 @@
-export const transformTimestampIntoDatetime = (timestamp: string) => {
+export const transformTimestampIntoDatetime = (timestamp) => {
   const date = new Date(Number.parseInt(timestamp, 10));
   const year = date.getFullYear();
   const month = ('0' + (date.getMonth() + 1)).slice(-2);
