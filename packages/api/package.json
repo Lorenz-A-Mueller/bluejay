@@ -10,6 +10,7 @@
     "dotenv-cli": "^4.1.0",
     "express": "^4.17.1",
     "ley": "^0.7.1",
+    "pg-connection-string": "^2.5.0",
     "postgres": "^1.0.2",
     "ts-node": "^10.4.0"
   },
