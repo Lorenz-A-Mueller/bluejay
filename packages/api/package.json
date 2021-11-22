@@ -1,0 +1,22 @@
+{
+  "name": "@bluejay/api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server-express": "^3.5.0",
+    "bcrypt": "^5.0.1",
+    "dotenv": "^10.0.0",
+    "dotenv-cli": "^4.1.0",
+    "express": "^4.17.1",
+    "ley": "^0.7.1",
+    "postgres": "^1.0.2",
+    "ts-node": "^10.4.0"
+  },
+  "scripts": {
+    "dev": "nodemon / index.js",
+    "migrate": "dotenv ley -- --require ts-node/register",
+    "start": "node index.js",
+    "heroku-postbuild": "yarn migrate up"
+  }
+}
