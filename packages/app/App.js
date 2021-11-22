@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createHttpLink } from 'apollo-link-http';
 import { useFonts } from 'expo-font';
-// import * as SplashScreen from 'expo-splash-screen';
+import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import React, { Fragment, useState } from 'react';
 import MainScreen from './screens/ MainScreen';
@@ -23,8 +23,8 @@ const client = new ApolloClient({
   link,
 });
 
-// SplashScreen.preventAutoHideAsync();
-// setTimeout(SplashScreen.hideAsync, 3000);
+SplashScreen.preventAutoHideAsync();
+setTimeout(SplashScreen.hideAsync, 3000);
 
 const Stack = createStackNavigator();
 
