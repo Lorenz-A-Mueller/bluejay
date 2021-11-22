@@ -7,5 +7,7 @@
   "workspaces": [
     "packages/*"
   ],
-  "start": "node packages/api/index.js"
+  "scripts": {
+    "start": "node packages/api/index.js"
+  }
 }
