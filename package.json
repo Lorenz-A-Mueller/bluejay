@@ -8,6 +8,6 @@
     "packages/*"
   ],
   "scripts": {
-    "start": "node packages/api/index.js"
+    "start": "cd packages/api"
   }
 }
