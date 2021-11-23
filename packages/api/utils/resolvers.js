@@ -95,10 +95,14 @@ exports.resolvers = {
             token,
             customerWithoutHashedPassword.id,
           );
+          const isProduction = process.env.NODE_ENV === 'production';
 
           // set token as cookie
           context.res.cookie('customerSessionToken', newSession.token, {
             httpOnly: true,
+            sameSite: 'lax',
+            secure: isProduction,
+            domain: 'http://192.168.1.101:3000',
           });
 
           return customerWithoutHashedPassword;
@@ -157,6 +161,9 @@ exports.resolvers = {
 
           context.res.cookie('employeeSessionToken', newSession.token, {
             httpOnly: true,
+            sameSite: 'lax',
+            secure: isProduction,
+            domain: 'http://192.168.1.101:3000',
           });
 
           return employeeWithoutHashedPassword;
