@@ -102,6 +102,7 @@ exports.getEmployeeByNumberWithHashedPassword = async (number) => {
   SELECT * FROM employees
   WHERE number=${number};
   `;
+  console.log('employee[0]: ', employee[0]);
   return employee[0];
 };
 
@@ -124,6 +125,7 @@ exports.createEmployeeSession = async (token, id) => {
   (${token}, ${id})
   RETURNING *
   `;
+  console.log('session[0]: ', session[0]);
   return session[0];
 };
 

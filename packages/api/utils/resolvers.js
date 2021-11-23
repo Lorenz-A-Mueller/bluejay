@@ -151,6 +151,8 @@ exports.resolvers = {
 
           const token = crypto.randomBytes(64).toString('base64');
 
+          console.log('token: ', token);
+
           // safe token and client id as a session in the DB
 
           const newSession = await createEmployeeSession(
