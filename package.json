@@ -8,6 +8,6 @@
     "packages/*"
   ],
   "scripts": {
-    "start": "yarn workspace api run start"
+    "start": "yarn workspace @bluejay/api run start"
   }
 }
