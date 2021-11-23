@@ -8,7 +8,7 @@
     "packages/*"
   ],
   "scripts": {
-    "start": "yarn workspace @bluejay/api run start",
-    "build": "yarn workspace @bluejay/api run heroku-postbuild"
+    "start": "yarn workspace $PACKAGE_TO_BUILD run start",
+    "build": "yarn workspace $PACKAGE_TO_BUILD run heroku-postbuild"
   }
 }
