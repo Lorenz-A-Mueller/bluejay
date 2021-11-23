@@ -7,7 +7,8 @@ export default async function extractTicketReportData(
   endTimestamp: number,
 ) {
   // const apiUrl = 'https://bluejay-customer-support.herokuapp.com/graphql';
-  const apiUrl = 'http://localhost:4000/graphql';
+  // const apiUrl = 'http://localhost:4000/graphql'
+  const apiUrl = 'http://192.168.1.101:4000/graphql';
   // query statuses in order to get number of available statuses
 
   const res = await fetch(apiUrl, {
