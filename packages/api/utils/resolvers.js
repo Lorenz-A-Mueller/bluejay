@@ -100,8 +100,8 @@ exports.resolvers = {
           // set token as cookie
           context.res.cookie('customerSessionToken', newSession.token, {
             httpOnly: true,
-            sameSite: 'lax',
-            secure: isProduction,
+            sameSite: 'none',
+            secure: true,
             domain: 'bluejay-helpdesk.herokuapp.com',
             path: '/',
           });
@@ -166,8 +166,8 @@ exports.resolvers = {
 
           context.res.cookie('employeeSessionToken', newSession.token, {
             httpOnly: true,
-            sameSite: 'lax',
-            secure: isProduction,
+            sameSite: 'none',
+            secure: true,
             domain: 'bluejay-helpdesk.herokuapp.com',
           });
 
