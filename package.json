@@ -9,6 +9,6 @@
   ],
   "scripts": {
     "start": "yarn workspace $PACKAGE_TO_BUILD run start",
-    "build": "yarn workspace $PACKAGE_TO_BUILD run heroku-postbuild"
+    "build": "yarn workspace $PACKAGE_TO_BUILD run $BUILD_COMMAND"
   }
 }
