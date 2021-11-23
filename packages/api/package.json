@@ -17,6 +17,7 @@
   "scripts": {
     "dev": "nodemon / index.js",
     "migrate": "dotenv ley -- --require ts-node/register",
-    "start": "node index.js"
+    "start": "node index.js",
+    "heroku-postbuild": "yarn migrate up"
   }
 }
