@@ -9,6 +9,6 @@
   ],
   "scripts": {
     "start": "node packages/api/index.js",
-    "heroku-postbuild": "cd packages/api && yarn"
+    "heroku-postbuild": "cd packages/api && yarn && yarn migrate up"
   }
 }
