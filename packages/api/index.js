@@ -7,8 +7,8 @@ const { resolvers } = require('./utils/resolvers');
 const app = express();
 
 const corsOptions = {
-  origin: '*',
-  // origin: 'https://bluejay-customer-support.herokuapp.com/',
+  // origin: '*',
+  origin: 'https://bluejay-helpdesk.herokuapp.com/',
   // origin: ['http://localhost:3000', 'http://localhost:19006'], // TODO: how to allow the sandbox access?
   // origin: 'http://localhost:19000',
   credentials: true,
