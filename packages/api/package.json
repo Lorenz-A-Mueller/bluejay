@@ -17,6 +17,6 @@
   "scripts": {
     "dev": "nodemon / index.js",
     "migrate": "dotenv ley -- --require ts-node/register",
-    "start": "node packages/api"
+    "start": "node index.js"
   }
 }
