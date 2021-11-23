@@ -102,7 +102,7 @@ exports.resolvers = {
             httpOnly: true,
             sameSite: 'lax',
             secure: isProduction,
-            domain: 'https://bluejay-helpdesk.herokuapp.com',
+            domain: 'bluejay-helpdesk.herokuapp.com',
             path: '/',
           });
 
@@ -168,7 +168,7 @@ exports.resolvers = {
             httpOnly: true,
             sameSite: 'lax',
             secure: isProduction,
-            domain: 'https://bluejay-helpdesk.herokuapp.com',
+            domain: 'bluejay-helpdesk.herokuapp.com',
           });
 
           return employeeWithoutHashedPassword;

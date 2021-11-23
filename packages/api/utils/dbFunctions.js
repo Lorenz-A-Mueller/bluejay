@@ -125,7 +125,7 @@ exports.createEmployeeSession = async (token, id) => {
   (${token}, ${id})
   RETURNING *
   `;
-  console.log('session[0]: ', session[0]);
+  console.log('session[0] inserted: ', session[0]);
   return session[0];
 };
 
