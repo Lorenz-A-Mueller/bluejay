@@ -9,6 +9,6 @@
   ],
   "scripts": {
     "start": "yarn workspace @bluejay/api run start",
-    "build": "yarn workspace @bluejay/api run heroku-postbuild"
+    "build": "yarn workspace @bluejay/api run heroku-postbuild && yarn workspace @bluejay/helpdesk run build"
   }
 }
