@@ -28,7 +28,7 @@ const server = new ApolloServer({
 const main = async () => {
   await server.start();
 
-  server.applyMiddleware({ app, cors: false, path: '/graphql' });
+  server.applyMiddleware({ app, cors: false, path: '/api/graphql' });
 
   // app.get('/rest', (req, res) => {
   //   res.json({
