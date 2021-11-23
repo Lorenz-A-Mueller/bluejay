@@ -8,7 +8,8 @@ import { globalStyles } from '../utils/styles';
 
 const link = createHttpLink({
   // uri: 'https://bluejay-customer-support.herokuapp.com/graphql',
-  uri: 'http://localhost:4000/graphql',
+  // uri: 'http://localhost:4000/graphql',
+  uri: 'http://192.168.1.101:4000/graphql',
   credentials: 'include',
 });
 const client = new ApolloClient({

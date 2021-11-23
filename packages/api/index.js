@@ -8,7 +8,8 @@ const app = express();
 
 const corsOptions = {
   // origin: '*',
-  origin: ['http://localhost:3000', 'http://localhost:19006'], // TODO: how to allow the sandbox access?
+  origin: 'https://bluejay-customer-support.herokuapp.com/',
+  // origin: ['http://localhost:3000', 'http://localhost:19006'], // TODO: how to allow the sandbox access?
   // origin: 'http://localhost:19000',
   credentials: true,
 };
@@ -28,7 +29,7 @@ const server = new ApolloServer({
 const main = async () => {
   await server.start();
 
-  server.applyMiddleware({ app, cors: false, path: '/api/graphql' });
+  server.applyMiddleware({ app, cors: false, path: '/graphql' });
 
   // app.get('/rest', (req, res) => {
   //   res.json({

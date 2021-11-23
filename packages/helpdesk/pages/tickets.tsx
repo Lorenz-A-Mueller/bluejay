@@ -349,7 +349,8 @@ export const getServerSideProps = async (
 
   const sessionToken = context.req.cookies.employeeSessionToken;
   // const apiUrl = 'https://bluejay-customer-support.herokuapp.com/graphql';
-  const apiUrl = 'http://localhost:4000/graphql'
+  // const apiUrl = 'http://localhost:4000/graphql'
+  const apiUrl = 'http://192.168.1.101:4000/graphql';
   // try {
   const employeeSessionFetchRes = await employeeSessionFetch(
     sessionToken,
