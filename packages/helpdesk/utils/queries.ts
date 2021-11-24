@@ -6,7 +6,7 @@ export const employeeSessionFetch = async (
 ) => {
   const data = await fetch(apiUrl, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', cookie: 'abc' },
+    headers: { 'Content-Type': 'application/json' },
     credentials: 'include',
     // credentials: 'same-origin',
     body: JSON.stringify({

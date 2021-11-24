@@ -23,8 +23,8 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-app.get('/', (req, res) => {
-  console.log(req.cookies);
+app.get('/graphql', (req, res) => {
+  console.log('req.cookies in api server: ', req.cookies);
 
   res.send();
 });
