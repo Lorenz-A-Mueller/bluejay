@@ -15,6 +15,7 @@ const link = createHttpLink({
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: link as any,
+  credentials: 'include',
 });
 
 function MyApp({ Component, pageProps }: AppProps) {

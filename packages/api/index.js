@@ -31,15 +31,15 @@ const main = async () => {
 
   server.applyMiddleware({ app, cors: true, path: '/graphql' });
 
-  // app.get('/rest', (req, res) => {
-  //   res.json({
-  //     data: 'API is working...',
-  //   });
-  // });
-
   app.listen(process.env.PORT || 4000, () => {
     console.log(`🚀  Server ready at port ${process.env.PORT || 4000}`);
   });
 };
 
 main();
+
+// app.get('/rest', (req, res) => {
+//   res.json({
+//     data: 'API is working...',
+//   });
+// });
