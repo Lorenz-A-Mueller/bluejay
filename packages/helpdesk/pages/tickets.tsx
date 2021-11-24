@@ -353,6 +353,7 @@ export const getServerSideProps = async (
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
+        cookie: 'abc',
       },
       credentials: 'include',
     });
