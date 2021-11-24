@@ -96,6 +96,7 @@ exports.resolvers = {
             customerWithoutHashedPassword.id,
           );
           const isProduction = process.env.NODE_ENV === 'production';
+          const maxAge = 60 * 60 * 24;
 
           // set token as cookie
           context.res.cookie('customerSessionToken', newSession.token, {
@@ -103,6 +104,8 @@ exports.resolvers = {
             sameSite: 'lax',
             secure: isProduction,
             path: '/',
+            maxAge: maxAge,
+            expires: new Date(Date.now() + maxAge * 1000),
           });
 
           return customerWithoutHashedPassword;
@@ -161,6 +164,7 @@ exports.resolvers = {
 
           // set token as cookie
           const isProduction = process.env.NODE_ENV === 'production';
+          const maxAge = 60 * 60 * 24;
           console.log('isProduction: ', isProduction);
           console.log('newSession.token: ', newSession.token);
           context.res.cookie('employeeSessionToken', newSession.token, {
@@ -168,7 +172,8 @@ exports.resolvers = {
             sameSite: 'none',
             secure: isProduction,
             path: '/',
-            maxAge: 60 * 60 * 24,
+            maxAge: maxAge,
+            expires: new Date(Date.now() + maxAge * 1000),
           });
 
           return employeeWithoutHashedPassword;
