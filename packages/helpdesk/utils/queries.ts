@@ -1,9 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const employeeSessionFetch = async (
-  sessionToken: string,
-  apiUrl: string,
-) => {
+export const employeeSessionFetch = async (apiUrl: string) => {
   const data = await fetch(apiUrl, {
     method: 'POST',
     headers: { Accept: 'application/json', 'Content-Type': 'application/json' },

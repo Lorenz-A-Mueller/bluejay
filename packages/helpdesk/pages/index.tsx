@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client';
 import { GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/dist/client/router';
 import Head from 'next/head';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { employeeSessionFetch, logInValidationQuery } from '../utils/queries';
 import { indexStyles } from '../utils/styles';
 

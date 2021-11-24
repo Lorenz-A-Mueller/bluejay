@@ -44,6 +44,10 @@ export default function Tickets(props: TicketsProps) {
   // fetch all Data necessary for associating id keys with corresponding data in tiles
   // TODO make 1 query out of those
 
+  useEffect(() => {
+    employeeSessionFetch('https://bluejay-api.herokuapp.com/graphql');
+  }, []);
+
   const { data: getPrioritiesQueryData } = useQuery(getPrioritiesQuery, {
     onCompleted: () => {
       setPriorities(getPrioritiesQueryData.priorities);
