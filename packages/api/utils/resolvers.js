@@ -195,7 +195,7 @@ exports.resolvers = {
       // context.req.header.cookie only includes the sessionCookie (parsed already via next.js)
       // console.log('context: ', context);
       console.log('context.req: ', context.req);
-      console.log('context.req.res: ', context.req.res);
+      console.log('context.req.cookies: ', context.req.cookies);
       // console.log('context.req.headers: ', context.req.headers);
       const sessionCookie = context.req.headers.cookie;
       console.log('sessionCookie: ', sessionCookie);

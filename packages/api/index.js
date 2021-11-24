@@ -32,6 +32,7 @@ const server = new ApolloServer({
   context: ({ req, res }) => ({
     req,
     res,
+    cookies: req.cookies,
   }),
 });
 
