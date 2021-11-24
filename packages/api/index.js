@@ -3,6 +3,7 @@ const cors = require('cors');
 const express = require('express');
 const { typeDefs } = require('./utils/typeDefs');
 const { resolvers } = require('./utils/resolvers');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
@@ -14,6 +15,11 @@ const corsOptions = {
   credentials: true,
 };
 app.use(cors(corsOptions));
+
+app.use('/graphql', cookieParser(), (req) => {
+  console.log('req in app.use: ', req);
+  console.log('req.cookies in app.use: ', req.cookies);
+});
 
 const server = new ApolloServer({
   typeDefs,
