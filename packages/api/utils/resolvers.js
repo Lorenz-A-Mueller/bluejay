@@ -164,7 +164,7 @@ exports.resolvers = {
           context.res.cookie('employeeSessionToken', newSession.token, {
             httpOnly: true,
             domain: '.herokuapp.com',
-            sameSite: 'lax',
+            sameSite: 'none',
             secure: isProduction,
             path: '/',
           });
