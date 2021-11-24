@@ -193,10 +193,10 @@ exports.resolvers = {
     },
     employeeSession: async (parent, args, context) => {
       // context.req.header.cookie only includes the sessionCookie (parsed already via next.js)
-      console.log('context: ', context);
+      // console.log('context: ', context);
       console.log('context.req: ', context.req);
-      console.log('context.req.headers: ', context.req.headers);
-      console.log('context.req.headers.');
+      console.log('context.req.res: ', context.req.res);
+      // console.log('context.req.headers: ', context.req.headers);
       const sessionCookie = context.req.headers.cookie;
       console.log('sessionCookie: ', sessionCookie);
       const validationResult = await getValidEmployeeSessionByToken(
