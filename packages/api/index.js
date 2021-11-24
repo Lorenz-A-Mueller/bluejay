@@ -16,10 +16,10 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-app.use('/graphql', cookieParser(), (req) => {
-  console.log('req in app.use: ', req);
-  console.log('req.cookies in app.use: ', req.cookies);
-});
+app.use('/graphql', cookieParser());
+
+console.log('req in index:, ', req);
+console.log('req.cookies in index:, ', req.cookies);
 
 const server = new ApolloServer({
   typeDefs,
