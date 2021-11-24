@@ -348,11 +348,12 @@ export const getServerSideProps = async (
   // check whether sessionToken in cookies matches an existing valid token in db
 
   const sessionToken = context.req.cookies.employeeSessionToken;
+  console.log('context.req.cookies in gssp: ', context.req.cookies);
   console.log('sessionToken: ', sessionToken);
   // const apiUrl = 'https://bluejay-customer-support.herokuapp.com/graphql';
   // const apiUrl = 'http://localhost:4000/graphql'
   // const apiUrl = 'https://bluejay-api.herokuapp.com/graphql';
-  const apiUrl = 'https://bluejay-api.herokuapp.com';
+  const apiUrl = 'https://bluejay-api.herokuapp.com/graphql';
   // try {
   const employeeSessionFetchRes = await employeeSessionFetch(
     sessionToken,
