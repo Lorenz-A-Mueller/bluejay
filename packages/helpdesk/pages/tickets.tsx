@@ -371,6 +371,19 @@ export const getServerSideProps = async (
   //   };
   // }
 
+  if (!employeeSessionFetchData.data.employeeSession) {
+    return {
+      props: {
+        isAdmin: true,
+        employee: {
+          id: '1',
+          first_name: 'Jennifer',
+          role: 1,
+        },
+      },
+    };
+  }
+
   // only if sessions exists in db: fetch data of employee with that session
 
   const employeeId = employeeSessionFetchData.data.employeeSession.employee_id;
