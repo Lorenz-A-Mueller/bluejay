@@ -358,14 +358,18 @@ export const getServerSideProps = async (
     apiUrl,
   );
   const employeeSessionFetchData = await employeeSessionFetchRes.json();
-  if (!employeeSessionFetchData.data.employeeSession) {
-    return {
-      redirect: {
-        destination: '/?returnTo=/tickets',
-        permanent: false,
-      },
-    };
-  }
+  console.log('employeeSessionFetchData: ', employeeSessionFetchData);
+
+  // comment this out for testing
+
+  // if (!employeeSessionFetchData.data.employeeSession) {
+  //   return {
+  //     redirect: {
+  //       destination: '/?returnTo=/tickets',
+  //       permanent: false,
+  //     },
+  //   };
+  // }
 
   // only if sessions exists in db: fetch data of employee with that session
 
