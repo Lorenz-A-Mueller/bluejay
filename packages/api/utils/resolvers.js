@@ -161,7 +161,12 @@ exports.resolvers = {
 
           // set token as cookie
 
-          t;
+          context.res.cookie('employeeSessionToken', newSession.token, {
+            httpOnly: true,
+            sameSite: 'lax',
+            secure: isProduction,
+            path: '/',
+          });
 
           return employeeWithoutHashedPassword;
           // context.res.sendStatus(200); // ???
