@@ -27,11 +27,11 @@ app.use('/graphql', cookieParser(), (req) => {
   return;
 });
 
-app.get('/graphql', (req, res) => {
-  console.log('req.cookies in api server: ', req.cookies);
+// app.get('/graphql', (req, res) => {
+//   console.log('req.cookies in api server: ', req.cookies);
 
-  res.send();
-});
+//   res.send();
+// });
 
 const server = new ApolloServer({
   typeDefs,
