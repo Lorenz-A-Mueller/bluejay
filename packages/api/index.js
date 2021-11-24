@@ -32,7 +32,7 @@ const main = async () => {
 
   server.applyMiddleware({
     app,
-    cors: true,
+    cors: corsOptions,
     path: '/graphql',
     // origin: 'https://bluejay-helpdesk.herokuapp.com',
     // credentials: true,
