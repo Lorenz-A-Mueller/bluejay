@@ -23,6 +23,10 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
+app.get('/', (req, res) => {
+  console.log(req.cookies);
+});
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
