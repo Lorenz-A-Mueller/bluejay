@@ -24,6 +24,7 @@ app.use(cors(corsOptions));
 
 app.use(cookieParser());
 app.get('/', (req, res) => {
+  console.log('req in api server: ', req);
   console.log('req.cookies in api server: ', req.cookies);
 
   res.send();
