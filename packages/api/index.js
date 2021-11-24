@@ -6,6 +6,13 @@ const { resolvers } = require('./utils/resolvers');
 const cookieParser = require('cookie-parser');
 
 const app = express();
+app.use(cookieParser());
+
+// app.get('/rest', (req, res) => {
+//   res.json({
+//     data: 'API is working...',
+//   });
+// });
 
 const corsOptions = {
   // origin: '*',
@@ -15,11 +22,6 @@ const corsOptions = {
   credentials: true,
 };
 app.use(cors(corsOptions));
-
-app.use('/graphql', cookieParser());
-
-console.log('req in index:, ', req);
-console.log('req.cookies in index:, ', req.cookies);
 
 const server = new ApolloServer({
   typeDefs,
@@ -50,9 +52,3 @@ const main = async () => {
 };
 
 main();
-
-// app.get('/rest', (req, res) => {
-//   res.json({
-//     data: 'API is working...',
-//   });
-// });
