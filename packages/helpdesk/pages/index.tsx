@@ -19,17 +19,18 @@ export default function Home() {
       employeeNumber: employeeNumberInput,
       employeePassword: employeePasswordInput,
     },
-    onCompleted: () => {
+    onCompleted: (data) => {
       setWasClicked(false);
       setEmployeeNumberInput('');
       setEmployeePasswordInput('');
+      console.log('data after login: ', data);
       // setAccessDenied(false);
-      const destination =
-        typeof router.query.returnTo === 'string' && router.query.returnTo
-          ? router.query.returnTo
-          : `/tickets`;
+      // const destination =
+      //   typeof router.query.returnTo === 'string' && router.query.returnTo
+      //     ? router.query.returnTo
+      //     : `/tickets`;
 
-      router.push(destination);
+      // router.push(destination);
     },
     onError: (error) => {
       setEmployeeNumberInput('');
@@ -108,6 +109,7 @@ export const getServerSideProps = async (
   const apiUrl = 'https://bluejay-api.herokuapp.com/graphql';
   const res = await employeeSessionFetch(sessionToken, apiUrl);
   const data = await res.json();
+
   if (data.data.employeeSession) {
     return {
       redirect: {

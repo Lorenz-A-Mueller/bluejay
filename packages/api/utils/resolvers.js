@@ -161,6 +161,7 @@ exports.resolvers = {
 
           // set token as cookie
           const isProduction = process.env.NODE_ENV === 'production';
+          console.log('isProduction: ', isProduction);
           context.res.cookie('employeeSessionToken', newSession.token, {
             httpOnly: true,
             domain: '.herokuapp.com',
