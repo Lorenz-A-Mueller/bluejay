@@ -96,7 +96,7 @@ exports.resolvers = {
             customerWithoutHashedPassword.id,
           );
           const isProduction = process.env.NODE_ENV === 'production';
-          const maxAge = 60 * 60 * 24;
+          const maxAge = 60 * 5;
 
           // set token as cookie
           context.res.cookie('customerSessionToken', newSession.token, {
@@ -164,7 +164,7 @@ exports.resolvers = {
 
           // set token as cookie
           const isProduction = process.env.NODE_ENV === 'production';
-          const maxAge = 60 * 60 * 24;
+          const maxAge = 60 * 5;
           console.log('expires: ', new Date(Date.now() + maxAge * 1000));
           console.log('isProduction: ', isProduction);
           console.log('newSession.token: ', newSession.token);
