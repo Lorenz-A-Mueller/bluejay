@@ -99,21 +99,6 @@ export const getServerSideProps = async (
     };
   }
 
-  // test -fetch
-
-  const testFetch = async (apiUrl: string) => {
-    const data = await fetch(apiUrl, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include',
-    });
-    return data;
-  };
-  testFetch('https://bluejay-api.herokuapp.com');
-
   const sessionToken = context.req.cookies.employeeSessionToken;
   console.log(
     'context.req.cookies.employeeSessionToken: ',

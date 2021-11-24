@@ -345,6 +345,20 @@ export default function Tickets(props: TicketsProps) {
 export const getServerSideProps = async (
   context: GetServerSidePropsContext,
 ) => {
+  // test -fetch
+
+  const testFetch = async (apiUrl: string) => {
+    const data = await fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
+    return data;
+  };
+  testFetch('https://bluejay-api.herokuapp.com');
   // check whether sessionToken in cookies matches an existing valid token in db
 
   const sessionToken = context.req.cookies.employeeSessionToken;
