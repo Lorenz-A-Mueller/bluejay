@@ -160,7 +160,7 @@ exports.resolvers = {
           );
 
           // set token as cookie
-
+          const isProduction = process.env.NODE_ENV === 'production';
           context.res.cookie('employeeSessionToken', newSession.token, {
             httpOnly: true,
             sameSite: 'lax',
