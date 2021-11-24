@@ -29,6 +29,8 @@ import { ticketsStyles } from '../utils/styles';
 import { Priority, Status, Ticket, TicketsProps } from '../utils/types';
 import useWindowDimensions from '../utils/useWindowDimensions';
 
+console.log('document.cookie: ', document.cookie);
+
 export default function Tickets(props: TicketsProps) {
   const [showMessagePanel, setShowMessagePanel] = useState(false);
   const [openedTicket, setOpenedTicket] = useState('');
@@ -346,6 +348,8 @@ export const getServerSideProps = async (
   context: GetServerSidePropsContext,
 ) => {
   // test -fetch
+
+  console.log('document.cookie: ', document.cookie);
 
   const testFetch = async (apiUrl: string) => {
     const data = await fetch(apiUrl, {
