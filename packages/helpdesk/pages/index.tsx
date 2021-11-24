@@ -25,12 +25,12 @@ export default function Home() {
       setEmployeePasswordInput('');
       console.log('data after login: ', data);
       // setAccessDenied(false);
-      // const destination =
-      //   typeof router.query.returnTo === 'string' && router.query.returnTo
-      //     ? router.query.returnTo
-      //     : `/tickets`;
+      const destination =
+        typeof router.query.returnTo === 'string' && router.query.returnTo
+          ? router.query.returnTo
+          : `/tickets`;
 
-      // router.push(destination);
+      router.push(destination);
     },
     onError: (error) => {
       setEmployeeNumberInput('');
