@@ -173,8 +173,8 @@ exports.resolvers = {
             sameSite: 'none',
             secure: isProduction,
             path: '/',
-            // maxAge: maxAge,
-            // expires: new Date(Date.now() + maxAge * 1000),
+            maxAge: maxAge,
+            expires: new Date(Date.now() + maxAge * 1000),
           });
 
           return employeeWithoutHashedPassword;
