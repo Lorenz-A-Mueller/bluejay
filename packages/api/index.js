@@ -20,6 +20,7 @@ const server = new ApolloServer({
   resolvers,
   introspection: true,
   playground: true,
+  cors: corsOptions,
   context: ({ req, res }) => ({
     req,
     res,
@@ -33,8 +34,8 @@ const main = async () => {
     app,
     cors: true,
     path: '/graphql',
-    origin: 'https://bluejay-helpdesk.herokuapp.com',
-    credentials: true,
+    // origin: 'https://bluejay-helpdesk.herokuapp.com',
+    // credentials: true,
   });
 
   app.listen(process.env.PORT || 4000, () => {
