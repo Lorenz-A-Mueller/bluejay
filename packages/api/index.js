@@ -29,7 +29,13 @@ const server = new ApolloServer({
 const main = async () => {
   await server.start();
 
-  server.applyMiddleware({ app, cors: true, path: '/graphql' });
+  server.applyMiddleware({
+    app,
+    cors: true,
+    path: '/graphql',
+    origin: 'https://bluejay-helpdesk.herokuapp.com',
+    credentials: true,
+  });
 
   app.listen(process.env.PORT || 4000, () => {
     console.log(`🚀  Server ready at port ${process.env.PORT || 4000}`);
