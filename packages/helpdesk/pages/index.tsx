@@ -110,14 +110,14 @@ export const getServerSideProps = async (
   const res = await employeeSessionFetch(sessionToken, apiUrl);
   const data = await res.json();
 
-  if (data.data.employeeSession) {
-    return {
-      redirect: {
-        destination: '/tickets',
-        permanent: false,
-      },
-    };
-  }
+  // if (data.data.employeeSession) {
+  //   return {
+  //     redirect: {
+  //       destination: '/tickets',
+  //       permanent: false,
+  //     },
+  //   };
+  // }
 
   return {
     props: {},
