@@ -25,6 +25,8 @@ app.use(cors(corsOptions));
 
 app.get('/', (req, res) => {
   console.log(req.cookies);
+
+  res.send();
 });
 
 const server = new ApolloServer({
