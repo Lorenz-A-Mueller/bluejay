@@ -6,7 +6,9 @@ const { resolvers } = require('./utils/resolvers');
 const cookieParser = require('cookie-parser');
 
 const app = express();
-app.use(cookieParser());
+app.use(cookieParser(), (req) => {
+  console.log('req.cookies in parser: ', req.cookies);
+});
 
 // app.get('/rest', (req, res) => {
 //   res.json({
