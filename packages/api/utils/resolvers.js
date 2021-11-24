@@ -168,6 +168,7 @@ exports.resolvers = {
             sameSite: 'none',
             secure: isProduction,
             path: '/',
+            maxAge: 60 * 60 * 24,
           });
 
           return employeeWithoutHashedPassword;
