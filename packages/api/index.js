@@ -22,7 +22,7 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-app.use('/graphql', cookieParser(), (req) => {
+app.use(cookieParser(), (req) => {
   console.log('req.cookies in parser: ', req.cookies);
   return;
 });
