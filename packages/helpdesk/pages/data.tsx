@@ -142,44 +142,44 @@ export default function Data(props: DataProps) {
   );
 }
 
-export const getServerSideProps = async (
-  context: GetServerSidePropsContext,
-) => {
-  // check whether sessionToken in cookies matches an existing valid token in db
+// export const getServerSideProps = async (
+//   context: GetServerSidePropsContext,
+// ) => {
+//   // check whether sessionToken in cookies matches an existing valid token in db
 
-  const sessionToken = context.req.cookies.employeeSessionToken;
-  // const apiUrl = 'https://bluejay-customer-support.herokuapp.com/graphql';
-  // const apiUrl = 'http://localhost:4000/graphql'
-  const apiUrl = 'https://bluejay-api.herokuapp.com/graphql';
-  const employeeSessionFetchRes = await employeeSessionFetch(apiUrl);
-  const employeeSessionFetchData = await employeeSessionFetchRes.json();
-  if (!employeeSessionFetchData.data.employeeSession) {
-    return {
-      redirect: {
-        destination: '/?returnTo=/data',
-        permanent: false,
-      },
-    };
-  }
+//   const sessionToken = context.req.cookies.employeeSessionToken;
+//   // const apiUrl = 'https://bluejay-customer-support.herokuapp.com/graphql';
+//   // const apiUrl = 'http://localhost:4000/graphql'
+//   const apiUrl = 'https://bluejay-api.herokuapp.com/graphql';
+//   const employeeSessionFetchRes = await employeeSessionFetch(apiUrl);
+//   const employeeSessionFetchData = await employeeSessionFetchRes.json();
+//   if (!employeeSessionFetchData.data.employeeSession) {
+//     return {
+//       redirect: {
+//         destination: '/?returnTo=/data',
+//         permanent: false,
+//       },
+//     };
+//   }
 
-  // only if sessions exists in db: fetch data of employee with that session
+//   // only if sessions exists in db: fetch data of employee with that session
 
-  const employeeId = employeeSessionFetchData.data.employeeSession.employee_id;
-  const employeeDataFetchRes = await employeeDataFetch(employeeId, apiUrl);
-  const employeeDataFetchData = await employeeDataFetchRes.json();
+//   const employeeId = employeeSessionFetchData.data.employeeSession.employee_id;
+//   const employeeDataFetchRes = await employeeDataFetch(employeeId, apiUrl);
+//   const employeeDataFetchData = await employeeDataFetchRes.json();
 
-  // after that, fetch the name of that employee's role
+//   // after that, fetch the name of that employee's role
 
-  const roleNameFetchRes = await roleNameFetch(
-    employeeDataFetchData.data.employee.role,
-    apiUrl,
-  );
-  const roleNameFetchData = await roleNameFetchRes.json();
+//   const roleNameFetchRes = await roleNameFetch(
+//     employeeDataFetchData.data.employee.role,
+//     apiUrl,
+//   );
+//   const roleNameFetchData = await roleNameFetchRes.json();
 
-  return {
-    props: {
-      employee: employeeDataFetchData.data.employee,
-      isAdmin: roleNameFetchData.data.role.role_name === 'admin',
-    },
-  };
-};
+//   return {
+//     props: {
+//       employee: employeeDataFetchData.data.employee,
+//       isAdmin: roleNameFetchData.data.role.role_name === 'admin',
+//     },
+//   };
+// };
