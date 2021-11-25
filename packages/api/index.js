@@ -24,7 +24,7 @@ const app = express();
 //   // origin: 'http://localhost:19000',
 //   credentials: true,
 // };
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 app.use(cookieParser());
 app.get('/', (req, res) => {
