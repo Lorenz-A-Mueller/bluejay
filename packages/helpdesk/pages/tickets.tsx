@@ -26,7 +26,13 @@ import {
   roleNameFetch,
 } from '../utils/queries';
 import { ticketsStyles } from '../utils/styles';
-import { Priority, Status, Ticket, TicketsProps } from '../utils/types';
+import {
+  Employee,
+  Priority,
+  Status,
+  Ticket,
+  TicketsProps,
+} from '../utils/types';
 import useWindowDimensions from '../utils/useWindowDimensions';
 
 export default function Tickets(props: TicketsProps) {
@@ -40,7 +46,7 @@ export default function Tickets(props: TicketsProps) {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [searchBarInput, setSearchBarInput] = useState('');
   const [refreshIconAngle, setRefreshIconAngle] = useState(0);
-  const [employee, setEmployee] = useState({});
+  const [employee, setEmployee] = useState<Employee | {}>({});
   const [isAdmin, setIsAdmin] = useState(false);
 
   // fetch all Data necessary for associating id keys with corresponding data in tiles
@@ -228,7 +234,7 @@ export default function Tickets(props: TicketsProps) {
     <Sidebar
       setFilter={props.setFilter}
       filter={props.filter}
-      employee={props.employee}
+      employee={employee}
       isAdmin={props.isAdmin}
     >
       <main css={screenWidth && ticketsStyles(screenWidth)}>
@@ -254,7 +260,9 @@ export default function Tickets(props: TicketsProps) {
           >
             <Image src={refreshIcon} alt="two arrows in form of a circle" />
           </button>
-          <p style={{ color: 'white' }}>{props.employee.first_name}</p>
+          <p style={{ color: 'white' }}>
+            {'first_name' in employee && employee.first_name}
+          </p>
           <button onClick={handleLogOutClick}>
             <Image src={logoutIcon} alt="a stylized door with an arrow" />
           </button>
@@ -334,7 +342,8 @@ export default function Tickets(props: TicketsProps) {
                 // don't render if employee is not an admin and the ticket is not assigned to them
               } else if (
                 !props.isAdmin &&
-                ticket.assignee_id !== props.employee.id
+                'id' in employee &&
+                ticket.assignee_id !== employee.id
               ) {
                 return <div key={`tile-key-${ticket.ticket_number}`} />;
 
@@ -374,7 +383,7 @@ export default function Tickets(props: TicketsProps) {
           setOngoingTicket={setOngoingTicket}
           deleteTicket={deleteTicket}
           closeTicket={closeTicket}
-          employee={props.employee}
+          employee={employee}
           employees={employees}
           priorities={priorities}
           isAdmin={props.isAdmin}
@@ -412,9 +421,14 @@ export const getServerSideProps = async (
   // const apiUrl = 'https://bluejay-api.herokuapp.com/graphql';
   const apiUrl = 'https://bluejay-api.herokuapp.com/graphql';
   // try {
+
+  // ****** TESTING HERE
+
   const employeeSessionFetchRes = await employeeSessionFetch(apiUrl);
   const employeeSessionFetchData = await employeeSessionFetchRes.json();
   console.log('employeeSessionFetchData: ', employeeSessionFetchData);
+
+  // *******
 
   // comment this out for testing
 
@@ -427,43 +441,47 @@ export const getServerSideProps = async (
   //   };
   // }
 
-  if (!employeeSessionFetchData.data.employeeSession) {
-    return {
-      props: {
-        isAdmin: true,
-        employee: {
-          id: '1',
-          first_name: 'Jennifer',
-          role: 1,
-        },
-      },
-    };
-  }
+  // TESTING HERE  *******
+
+  // if (!employeeSessionFetchData.data.employeeSession) {
+  //   return {
+  //     props: {
+  //       isAdmin: true,
+  //       employee: {
+  //         id: '1',
+  //         first_name: 'Jennifer',
+  //         role: 1,
+  //       },
+  //     },
+  //   };
+  // }
+
+  //********** */
 
   // only if sessions exists in db: fetch data of employee with that session
 
-  const employeeId = employeeSessionFetchData.data.employeeSession.employee_id;
-  const employeeDataFetchRes = await employeeDataFetch(employeeId, apiUrl);
-  const employeeDataFetchData = await employeeDataFetchRes.json();
+  // const employeeId = employeeSessionFetchData.data.employeeSession.employee_id;
+  // const employeeDataFetchRes = await employeeDataFetch(employeeId, apiUrl);
+  // const employeeDataFetchData = await employeeDataFetchRes.json();
 
   // after that, fetch the name of that employee's role
 
-  const roleNameFetchRes = await roleNameFetch(
-    employeeDataFetchData.data.employee.role,
-    apiUrl,
-  );
-  const roleNameFetchData = await roleNameFetchRes.json();
+  //   const roleNameFetchRes = await roleNameFetch(
+  //     employeeDataFetchData.data.employee.role,
+  //     apiUrl,
+  //   );
+  //   const roleNameFetchData = await roleNameFetchRes.json();
 
-  return {
-    props: {
-      employee: employeeDataFetchData.data.employee,
-      isAdmin: roleNameFetchData.data.role.role_name === 'admin',
-    },
-  };
+  //   return {
+  //     props: {
+  //       employee: employeeDataFetchData.data.employee,
+  //       isAdmin: roleNameFetchData.data.role.role_name === 'admin',
+  //     },
+  //   };
+  // };
+  // catch {
+  //   return {
+  //     props: {},
+  //   };
+  // }
 };
-// catch {
-//   return {
-//     props: {},
-//   };
-// }
-// };

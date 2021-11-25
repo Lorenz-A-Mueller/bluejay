@@ -73,7 +73,9 @@ export default function Data(props: DataProps) {
     >
       <main css={screenWidth && dataStyles(screenWidth)}>
         <div className="top-bar">
-          <p style={{ color: 'white' }}>{props.employee.first_name}</p>
+          <p style={{ color: 'white' }}>
+            {'first_name' in props.employee && props.employee.first_name}
+          </p>
           <button onClick={() => logOut()}>
             <Image src={logoutIcon} alt="a stylized door with an arrow" />
           </button>

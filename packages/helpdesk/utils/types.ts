@@ -104,11 +104,13 @@ export type Status = {
   status_name: string;
 };
 
-export type Employee = {
-  id: string;
-  first_name: string;
-  role: number;
-};
+export type Employee =
+  | {
+      id: string;
+      first_name: string;
+      role: number;
+    }
+  | {};
 
 export type Category = {
   id: string;
