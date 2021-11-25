@@ -18,6 +18,7 @@ const corsOptions = {
   origin: [
     'https://bluejay-helpdesk.herokuapp.com',
     'http://192.168.0.115:19006',
+    'exp://exp.host/@lorenz-arthur/bluejay-premium-app',
     'exp://192.168.0.115:19006',
   ],
   // origin: ['http://localhost:3000', 'http://localhost:19006'], // TODO: how to allow the sandbox access?
