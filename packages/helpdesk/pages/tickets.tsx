@@ -235,7 +235,7 @@ export default function Tickets(props: TicketsProps) {
       setFilter={props.setFilter}
       filter={props.filter}
       employee={employee}
-      isAdmin={props.isAdmin}
+      isAdmin={isAdmin}
     >
       <main css={screenWidth && ticketsStyles(screenWidth)}>
         <div className="top-bar">
@@ -341,7 +341,7 @@ export default function Tickets(props: TicketsProps) {
 
                 // don't render if employee is not an admin and the ticket is not assigned to them
               } else if (
-                !props.isAdmin &&
+                !isAdmin &&
                 'id' in employee &&
                 ticket.assignee_id !== employee.id
               ) {
@@ -386,102 +386,105 @@ export default function Tickets(props: TicketsProps) {
           employee={employee}
           employees={employees}
           priorities={priorities}
-          isAdmin={props.isAdmin}
+          isAdmin={isAdmin}
         />
       )}
     </Sidebar>
   );
 }
 
-export const getServerSideProps = async (
-  context: GetServerSidePropsContext,
-) => {
-  // test -fetch
+// ** TESTING
+// export const getServerSideProps = async (
+//   context: GetServerSidePropsContext,
+// ) => {
+// ***
 
-  // const testFetch = async (apiUrl: string) => {
-  //   const data = await fetch(apiUrl, {
-  //     method: 'GET',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //       cookie: 'abc',
-  //     },
-  //     credentials: 'include',
-  //   });
-  //   return data;
-  // };
-  // testFetch('https://bluejay-api.herokuapp.com');
-  // check whether sessionToken in cookies matches an existing valid token in db
+// test -fetch
 
-  // const sessionToken = context.req.cookies.employeeSessionToken;
-  // console.log('context.req.cookies in gssp: ', context.req.cookies);
-  // console.log('sessionToken: ', sessionToken);
-  // const apiUrl = 'https://bluejay-customer-support.herokuapp.com/graphql';
-  // const apiUrl = 'http://localhost:4000/graphql'
-  // const apiUrl = 'https://bluejay-api.herokuapp.com/graphql';
-  const apiUrl = 'https://bluejay-api.herokuapp.com/graphql';
-  // try {
+// const testFetch = async (apiUrl: string) => {
+//   const data = await fetch(apiUrl, {
+//     method: 'GET',
+//     headers: {
+//       Accept: 'application/json',
+//       'Content-Type': 'application/json',
+//       cookie: 'abc',
+//     },
+//     credentials: 'include',
+//   });
+//   return data;
+// };
+// testFetch('https://bluejay-api.herokuapp.com');
+// check whether sessionToken in cookies matches an existing valid token in db
 
-  // ****** TESTING HERE
+// const sessionToken = context.req.cookies.employeeSessionToken;
+// console.log('context.req.cookies in gssp: ', context.req.cookies);
+// console.log('sessionToken: ', sessionToken);
+// const apiUrl = 'https://bluejay-customer-support.herokuapp.com/graphql';
+// const apiUrl = 'http://localhost:4000/graphql'
+// const apiUrl = 'https://bluejay-api.herokuapp.com/graphql';
+const apiUrl = 'https://bluejay-api.herokuapp.com/graphql';
+// try {
 
-  const employeeSessionFetchRes = await employeeSessionFetch(apiUrl);
-  const employeeSessionFetchData = await employeeSessionFetchRes.json();
-  console.log('employeeSessionFetchData: ', employeeSessionFetchData);
+// ****** TESTING HERE
 
-  // *******
+// const employeeSessionFetchRes = await employeeSessionFetch(apiUrl);
+// const employeeSessionFetchData = await employeeSessionFetchRes.json();
+// console.log('employeeSessionFetchData: ', employeeSessionFetchData);
 
-  // comment this out for testing
+// *******
 
-  // if (!employeeSessionFetchData.data.employeeSession) {
-  //   return {
-  //     redirect: {
-  //       destination: '/?returnTo=/tickets',
-  //       permanent: false,
-  //     },
-  //   };
-  // }
+// comment this out for testing
 
-  // TESTING HERE  *******
+// if (!employeeSessionFetchData.data.employeeSession) {
+//   return {
+//     redirect: {
+//       destination: '/?returnTo=/tickets',
+//       permanent: false,
+//     },
+//   };
+// }
 
-  // if (!employeeSessionFetchData.data.employeeSession) {
-  //   return {
-  //     props: {
-  //       isAdmin: true,
-  //       employee: {
-  //         id: '1',
-  //         first_name: 'Jennifer',
-  //         role: 1,
-  //       },
-  //     },
-  //   };
-  // }
+// TESTING HERE  *******
 
-  //********** */
+// if (!employeeSessionFetchData.data.employeeSession) {
+//   return {
+//     props: {
+//       isAdmin: true,
+//       employee: {
+//         id: '1',
+//         first_name: 'Jennifer',
+//         role: 1,
+//       },
+//     },
+//   };
+// }
 
-  // only if sessions exists in db: fetch data of employee with that session
+//********** */
 
-  // const employeeId = employeeSessionFetchData.data.employeeSession.employee_id;
-  // const employeeDataFetchRes = await employeeDataFetch(employeeId, apiUrl);
-  // const employeeDataFetchData = await employeeDataFetchRes.json();
+// only if sessions exists in db: fetch data of employee with that session
 
-  // after that, fetch the name of that employee's role
+// const employeeId = employeeSessionFetchData.data.employeeSession.employee_id;
+// const employeeDataFetchRes = await employeeDataFetch(employeeId, apiUrl);
+// const employeeDataFetchData = await employeeDataFetchRes.json();
 
-  //   const roleNameFetchRes = await roleNameFetch(
-  //     employeeDataFetchData.data.employee.role,
-  //     apiUrl,
-  //   );
-  //   const roleNameFetchData = await roleNameFetchRes.json();
+// after that, fetch the name of that employee's role
 
-  //   return {
-  //     props: {
-  //       employee: employeeDataFetchData.data.employee,
-  //       isAdmin: roleNameFetchData.data.role.role_name === 'admin',
-  //     },
-  //   };
-  // };
-  // catch {
-  //   return {
-  //     props: {},
-  //   };
-  // }
-};
+//   const roleNameFetchRes = await roleNameFetch(
+//     employeeDataFetchData.data.employee.role,
+//     apiUrl,
+//   );
+//   const roleNameFetchData = await roleNameFetchRes.json();
+
+//   return {
+//     props: {
+//       employee: employeeDataFetchData.data.employee,
+//       isAdmin: roleNameFetchData.data.role.role_name === 'admin',
+//     },
+//   };
+// };
+// catch {
+//   return {
+//     props: {},
+//   };
+// }
+// };
