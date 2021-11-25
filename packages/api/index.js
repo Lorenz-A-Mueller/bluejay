@@ -13,18 +13,18 @@ const app = express();
 //   });
 // });
 
-// const corsOptions = {
-//   // origin: '*',
-//   origin: [
-//     'https://bluejay-helpdesk.herokuapp.com',
-//     'http://192.168.0.115:19006',
-//     'exp://192.168.0.115:19000',
-//   ],
-//   // origin: ['http://localhost:3000', 'http://localhost:19006'], // TODO: how to allow the sandbox access?
-//   // origin: 'http://localhost:19000',
-//   credentials: true,
-// };
-// app.use(cors(corsOptions));
+const corsOptions = {
+  // origin: '*',
+  origin: [
+    'https://bluejay-helpdesk.herokuapp.com',
+    'http://192.168.0.115:19006',
+    'exp://192.168.0.115:19006',
+  ],
+  // origin: ['http://localhost:3000', 'http://localhost:19006'], // TODO: how to allow the sandbox access?
+  // origin: 'http://localhost:19000',
+  credentials: true,
+};
+app.use(cors(corsOptions));
 
 app.use(cookieParser());
 app.get('/', (req, res) => {
@@ -39,7 +39,7 @@ const server = new ApolloServer({
   resolvers,
   introspection: true,
   playground: true,
-  // cors: corsOptions,
+  cors: corsOptions,
   context: ({ req, res }) => ({
     req,
     res,
@@ -52,7 +52,7 @@ const main = async () => {
 
   server.applyMiddleware({
     app,
-    // cors: corsOptions,
+    cors: corsOptions,
     path: '/graphql',
     // origin: 'https://bluejay-helpdesk.herokuapp.com',
     // credentials: true,
