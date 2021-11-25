@@ -40,12 +40,50 @@ export default function Tickets(props: TicketsProps) {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [searchBarInput, setSearchBarInput] = useState('');
   const [refreshIconAngle, setRefreshIconAngle] = useState(0);
+  const [employee, setEmployee] = useState({});
+  const [isAdmin, setIsAdmin] = useState(false);
 
   // fetch all Data necessary for associating id keys with corresponding data in tiles
   // TODO make 1 query out of those
 
+  console.log('employee: ', employee);
+  console.log('isAdmin: ', isAdmin);
+
   useEffect(() => {
-    employeeSessionFetch('https://bluejay-api.herokuapp.com/graphql');
+    const apiUrl = 'https://bluejay-api.herokuapp.com/graphql';
+    const validateSession = async () => {
+      const employeeSessionFetchRes = await employeeSessionFetch(apiUrl);
+      const employeeSessionFetchData = await employeeSessionFetchRes.json();
+      console.log('employeeSessionFetchData: ', employeeSessionFetchData);
+
+      // throw back here if there is no data.employeeSession
+
+      // otherwise: get employeeId
+
+      const employeeId =
+        employeeSessionFetchData.data.employeeSession.employee_id;
+      console.log('employeeId: ', employeeId);
+
+      // and use it fetch the employee Data
+
+      const employeeDataFetchRes = await employeeDataFetch(employeeId, apiUrl);
+      const employeeDataFetchData = await employeeDataFetchRes.json();
+
+      // then use the role id to fetch to name of that employee's role
+
+      const roleNameFetchRes = await roleNameFetch(
+        employeeDataFetchData.data.employee.role,
+        apiUrl,
+      );
+      const roleNameFetchData = await roleNameFetchRes.json();
+
+      // set state vars to the corresponding values
+
+      setEmployee(employeeDataFetchData.data.employee);
+      setIsAdmin(roleNameFetchData.data.role.role_name === 'admin');
+    };
+
+    validateSession();
   }, []);
 
   const { data: getPrioritiesQueryData } = useQuery(getPrioritiesQuery, {
