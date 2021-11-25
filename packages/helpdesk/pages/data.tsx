@@ -17,7 +17,7 @@ import {
 } from '../utils/queries';
 import { dataStyles } from '../utils/styles';
 import { transformTimestampIntoDatetime2 } from '../utils/transformTimestampIntoDatetime';
-import { DataProps, ReportData } from '../utils/types';
+import { DataProps, Employee, ReportData } from '../utils/types';
 import useWindowDimensions from '../utils/useWindowDimensions';
 
 export default function Data(props: DataProps) {
@@ -27,6 +27,8 @@ export default function Data(props: DataProps) {
   // default: october 12, 2020, 00:00:00:000 GMT + 2
   const [startDate, setStartDate] = useState(1602453600000);
   const [endDate, setEndDate] = useState(Date.parse(new Date().toDateString()));
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [employee, setEmployee] = useState<Employee | {}>({});
 
   // validate sessionToken
 
@@ -45,27 +47,27 @@ export default function Data(props: DataProps) {
 
       // otherwise: get employeeId
 
-      // const employeeId =
-      //   employeeSessionFetchData.data.employeeSession.employee_id;
-      // console.log('employeeId: ', employeeId);
+      const employeeId =
+        employeeSessionFetchData.data.employeeSession.employee_id;
+      console.log('employeeId: ', employeeId);
 
-      // // and use it fetch the employee Data
+      // and use it fetch the employee Data
 
-      // const employeeDataFetchRes = await employeeDataFetch(employeeId, apiUrl);
-      // const employeeDataFetchData = await employeeDataFetchRes.json();
+      const employeeDataFetchRes = await employeeDataFetch(employeeId, apiUrl);
+      const employeeDataFetchData = await employeeDataFetchRes.json();
 
-      // // then use the role id to fetch to name of that employee's role
+      // then use the role id to fetch to name of that employee's role
 
-      // const roleNameFetchRes = await roleNameFetch(
-      //   employeeDataFetchData.data.employee.role,
-      //   apiUrl,
-      // );
-      // const roleNameFetchData = await roleNameFetchRes.json();
+      const roleNameFetchRes = await roleNameFetch(
+        employeeDataFetchData.data.employee.role,
+        apiUrl,
+      );
+      const roleNameFetchData = await roleNameFetchRes.json();
 
-      // // set state vars to the corresponding values
+      // set state vars to the corresponding values
 
-      // setEmployee(employeeDataFetchData.data.employee);
-      // setIsAdmin(roleNameFetchData.data.role.role_name === 'admin');
+      setEmployee(employeeDataFetchData.data.employee);
+      setIsAdmin(roleNameFetchData.data.role.role_name === 'admin');
     };
 
     validateSession();
@@ -111,15 +113,15 @@ export default function Data(props: DataProps) {
     <SideBar
       setFilter={props.setFilter}
       filter={props.filter}
-      employee={props.employee}
-      isAdmin={props.isAdmin}
+      employee={employee}
+      isAdmin={isAdmin}
     >
       <main css={screenWidth && dataStyles(screenWidth)}>
         <div className="top-bar">
           <p style={{ color: 'white' }}>
-            {props.employee &&
-              'first_name' in props.employee &&
-              props.employee.first_name}
+            {employee &&
+              'first_name' in employee &&
+              employee.first_name}
           </p>
           <button onClick={() => logOut()}>
             <Image src={logoutIcon} alt="a stylized door with an arrow" />

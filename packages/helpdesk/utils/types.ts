@@ -138,9 +138,7 @@ export type TicketsProps = {
 };
 
 export type DataProps = {
-  employee: Employee;
   filter: string;
-  isAdmin: boolean;
   setFilter: React.Dispatch<React.SetStateAction<string>>;
 };
 
