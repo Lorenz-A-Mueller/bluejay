@@ -28,6 +28,49 @@ export default function Data(props: DataProps) {
   const [startDate, setStartDate] = useState(1602453600000);
   const [endDate, setEndDate] = useState(Date.parse(new Date().toDateString()));
 
+  // validate sessionToken
+
+  useEffect(() => {
+    const apiUrl = 'https://bluejay-api.herokuapp.com/graphql';
+    const validateSession = async () => {
+      const employeeSessionFetchRes = await employeeSessionFetch(apiUrl);
+      const employeeSessionFetchData = await employeeSessionFetchRes.json();
+      console.log('employeeSessionFetchData: ', employeeSessionFetchData);
+
+      // throw back to log-in here if there is no data.employeeSession
+
+      if (!employeeSessionFetchData.data.employeeSession) {
+        router.push('/');
+      }
+
+      // otherwise: get employeeId
+
+      // const employeeId =
+      //   employeeSessionFetchData.data.employeeSession.employee_id;
+      // console.log('employeeId: ', employeeId);
+
+      // // and use it fetch the employee Data
+
+      // const employeeDataFetchRes = await employeeDataFetch(employeeId, apiUrl);
+      // const employeeDataFetchData = await employeeDataFetchRes.json();
+
+      // // then use the role id to fetch to name of that employee's role
+
+      // const roleNameFetchRes = await roleNameFetch(
+      //   employeeDataFetchData.data.employee.role,
+      //   apiUrl,
+      // );
+      // const roleNameFetchData = await roleNameFetchRes.json();
+
+      // // set state vars to the corresponding values
+
+      // setEmployee(employeeDataFetchData.data.employee);
+      // setIsAdmin(roleNameFetchData.data.role.role_name === 'admin');
+    };
+
+    validateSession();
+  }, []);
+
   const [logOut] = useMutation(deleteSessionMutation, {
     onCompleted: () => {
       router.push('/');

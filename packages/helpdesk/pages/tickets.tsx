@@ -62,7 +62,11 @@ export default function Tickets(props: TicketsProps) {
       const employeeSessionFetchData = await employeeSessionFetchRes.json();
       console.log('employeeSessionFetchData: ', employeeSessionFetchData);
 
-      // throw back here if there is no data.employeeSession
+      // throw back to log-in here if there is no data.employeeSession
+
+      if (!employeeSessionFetchData.data.employeeSession) {
+        router.push('/');
+      }
 
       // otherwise: get employeeId
 
