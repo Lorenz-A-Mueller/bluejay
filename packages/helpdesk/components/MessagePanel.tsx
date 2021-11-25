@@ -51,7 +51,7 @@ export default function MessagePanel(props: MessagePanelProps) {
     variables: {
       ticketID: 'id' in ticketData && ticketData.id,
       content: newMessageText,
-      responderID: props.employee.id,
+      responderID: 'id' in props.employee && props.employee.id,
     },
     onCompleted: () => {
       getMessages();

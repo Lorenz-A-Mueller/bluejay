@@ -53,10 +53,18 @@ export default function Tile(props: TileProps) {
           .status_name,
       );
       if (props.assigneeId) {
-        setThisAssigneeName(
-          props.employees.find((employee) => employee.id === props.assigneeId)!
-            .first_name,
+        const assignedEmployee = props.employees.find(
+          (employee) =>
+            'id' in employee &&
+            'first_name' in employee &&
+            employee.id === props.assigneeId,
         );
+        setThisAssigneeName(
+          'first_name' in assignedEmployee && assignedEmployee.first_name,
+        );
+        // props.employees.find((employee) => "id" in employee && "first_name" in employee && employee.id === props.assigneeId)
+        //   .first_name,
+        // );
       } else {
         setThisAssigneeName('not assigned');
       }

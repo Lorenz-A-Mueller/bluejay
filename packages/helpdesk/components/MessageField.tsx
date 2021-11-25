@@ -38,7 +38,7 @@ export default function MessageField(props: MessageFieldProps) {
       <div className="info-field">
         <p>
           {props.message?.responder_id
-            ? props.employee.first_name
+            ? 'first_name' in props.employee && props.employee.first_name
             : customerFirstName}
         </p>
         <p>{!props.message?.responder_id && customerLastName}</p>

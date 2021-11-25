@@ -189,10 +189,10 @@ export default function MessagePanelHeader(props: MessagePanelHeaderProps) {
             {'employees' in props &&
               props.employees.map((employee) => (
                 <option
-                  key={`assignee-option-key-${employee.id}`}
-                  value={employee.id}
+                  key={`assignee-option-key-${'id' in employee && employee.id}`}
+                  value={'id' in employee && employee.id}
                 >
-                  {employee.first_name}
+                  {'first_name' in employee && employee.first_name}
                 </option>
               ))}
           </select>
