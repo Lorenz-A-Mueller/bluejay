@@ -18,7 +18,7 @@ const corsOptions = {
   origin: [
     'https://bluejay-helpdesk.herokuapp.com',
     'http://192.168.0.115:19006',
-    // 'exp://exp.host/@lorenz-arthur/bluejay-premium-app',
+    'exp://exp.host/@lorenz-arthur/bluejay-premium-app',
     // 'exp://192.168.0.115:19006',
     // 'http://localhost:19006',
   ],
