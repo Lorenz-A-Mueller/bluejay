@@ -167,7 +167,7 @@ exports.resolvers = {
 
           // set token as cookie
           const isProduction = process.env.NODE_ENV === 'production';
-          const maxAge = 60 * 5 * 1000; // 5 minutes
+          const maxAge = 60 * 60 * 1000; // 1 hour minutes
           // console.log('expires: ', new Date(Date.now() + maxAge * 1000));
           console.log('isProduction: ', isProduction);
           console.log('newSession.token: ', newSession.token);

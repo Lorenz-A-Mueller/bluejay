@@ -73,6 +73,7 @@ export default function Home() {
               name="password"
               onChange={(e) => setEmployeePasswordInput(e.currentTarget.value)}
               value={employeePasswordInput}
+              type="password"
             />
             <button onClick={() => setWasClicked(true)}>SIGN IN</button>
           </div>
@@ -99,27 +100,27 @@ export const getServerSideProps = async (
     };
   }
 
-  const sessionToken = context.req.cookies.employeeSessionToken;
-  console.log(
-    'context.req.cookies.employeeSessionToken: ',
-    context.req.cookies.employeeSessionToken,
-  );
-  // const apiUrl = 'https://bluejay-customer-support.herokuapp.com/graphql';
-  // const apiUrl = 'http://localhost:4000/graphql'
-  const apiUrl = 'https://bluejay-api.herokuapp.com/graphql';
-  const res = await employeeSessionFetch(apiUrl);
-  const data = await res.json();
+  // const sessionToken = context.req.cookies.employeeSessionToken;
+  // console.log(
+  //   'context.req.cookies.employeeSessionToken: ',
+  //   context.req.cookies.employeeSessionToken,
+  // );
+  // // const apiUrl = 'https://bluejay-customer-support.herokuapp.com/graphql';
+  // // const apiUrl = 'http://localhost:4000/graphql'
+  // const apiUrl = 'https://bluejay-api.herokuapp.com/graphql';
+  // const res = await employeeSessionFetch(apiUrl);
+  // const data = await res.json();
 
-  // if (data.data.employeeSession) {
-  //   return {
-  //     redirect: {
-  //       destination: '/tickets',
-  //       permanent: false,
-  //     },
-  //   };
-  // }
+  // // if (data.data.employeeSession) {
+  // //   return {
+  // //     redirect: {
+  // //       destination: '/tickets',
+  // //       permanent: false,
+  // //     },
+  // //   };
+  // // }
 
-  return {
-    props: {},
-  };
+  // return {
+  //   props: {},
+  // };
 };

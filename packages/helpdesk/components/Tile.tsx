@@ -102,7 +102,7 @@ export default function Tile(props: TileProps) {
           <p>{thisStatusName}</p>
         </div>
         <div className="title-box">
-          <p>{props.title} (2) </p> {/* TODO: show Number of messages */}
+          <p>{props.title} </p> {/* TODO: show Number of messages */}
         </div>
         <div className="ticket-number-box">
           <p>{props.ticketNumber}</p>
