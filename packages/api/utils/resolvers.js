@@ -98,14 +98,17 @@ exports.resolvers = {
           const isProduction = process.env.NODE_ENV === 'production';
           const maxAge = 60 * 5;
 
+          console.log('newSession.token (customer): ', newSession.token);
+
           // set token as cookie
           context.res.cookie('customerSessionToken', newSession.token, {
             httpOnly: true,
-            sameSite: 'lax',
-            secure: isProduction,
-            path: '/',
-            maxAge: maxAge,
-            expires: new Date(Date.now() + maxAge * 1000),
+            // sameSite: 'lax',
+            // secure: true,
+            // secure: isProduction,
+            // path: '/',
+            // maxAge: maxAge,
+            // expires: new Date(Date.now() + maxAge * 1000),
           });
 
           return customerWithoutHashedPassword;

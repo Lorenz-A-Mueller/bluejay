@@ -18,8 +18,9 @@ const corsOptions = {
   origin: [
     'https://bluejay-helpdesk.herokuapp.com',
     'http://192.168.0.115:19006',
-    'exp://exp.host/@lorenz-arthur/bluejay-premium-app',
-    'exp://192.168.0.115:19006',
+    // 'exp://exp.host/@lorenz-arthur/bluejay-premium-app',
+    // 'exp://192.168.0.115:19006',
+    // 'http://localhost:19006',
   ],
   // origin: ['http://localhost:3000', 'http://localhost:19006'], // TODO: how to allow the sandbox access?
   // origin: 'http://localhost:19000',
@@ -29,6 +30,7 @@ app.use(cors(corsOptions));
 
 app.use(cookieParser());
 app.get('/', (req, res) => {
+  //test
   console.log('req in api server: ', req);
   console.log('req.cookies in api server: ', req.cookies);
 
@@ -40,7 +42,7 @@ const server = new ApolloServer({
   resolvers,
   introspection: true,
   playground: true,
-  cors: corsOptions,
+  cors: corsOptions, //
   context: ({ req, res }) => ({
     req,
     res,
@@ -55,8 +57,6 @@ const main = async () => {
     app,
     cors: corsOptions,
     path: '/graphql',
-    // origin: 'https://bluejay-helpdesk.herokuapp.com',
-    // credentials: true,
   });
 
   app.listen(process.env.PORT || 4000, () => {
