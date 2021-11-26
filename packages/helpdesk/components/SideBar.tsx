@@ -147,9 +147,8 @@ export default function SideBar(props: SideBarProps) {
               props.setFilter('none');
               router.push('/data');
             }}
-            cy-data="data-button"
           >
-            <Image src={dataIcon} alt="a pie-chart" />
+            <Image src={dataIcon} alt="a pie-chart" data-cy="data-button" />
           </button>
         )}
         {'employee' in props && 'isAdmin' in props && props.isAdmin && (

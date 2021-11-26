@@ -2,13 +2,15 @@ import cypress from 'cypress';
 
 describe('Navigation', () => {
   it('should be possible to log-in as employee 00001 and navigate through the pages', () => {
-    cy.visit('https://bluejay-helpdesk.herokuapp.com/');
+    cy.visit('https://bluejay-helpdesk.herokuapp.com');
+    // cy.visit('http://localhost:3000');
     cy.contains('Customer Support');
-    cy.get('[data-cy=employee-id-input]').type('00001');
+    cy.get('[data-cy=employee-id-input]').should('be.visible').type('00001');
     cy.get('[data-cy=employee-password-input]').type('JenniferTestPassword1');
     cy.get('[data-cy=employee-login-button]').click();
     cy.contains('Pending Tickets');
-    cy.get('[data-cy=data-button]').click();
+    cy.wait(10000);
+    cy.get('[data-cy=data-button]').should('be.visible').click();
     cy.contains('Ticket Reports');
   });
   //   it('should be possible to buy a product, change its quantity in the cart and delete it again from there (verifying cookie)', () => {
