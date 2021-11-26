@@ -9,7 +9,6 @@ describe('Navigation', () => {
     cy.get('[data-cy=employee-password-input]').type('JenniferTestPassword1');
     cy.get('[data-cy=employee-login-button]').click();
     cy.contains('Pending Tickets');
-    cy.wait(10000);
     cy.get('[data-cy=data-button]').should('be.visible').click();
     cy.contains('Ticket Reports');
   });

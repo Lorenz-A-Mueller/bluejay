@@ -120,7 +120,7 @@ export default function Data(props: DataProps) {
           <p style={{ color: 'white' }}>
             {employee && 'first_name' in employee && employee.first_name}
           </p>
-          <button onClick={() => logOut()}>
+          <button onClick={() => logOut()} data-cy="logout-button">
             <Image src={logoutIcon} alt="a stylized door with an arrow" />
           </button>
         </div>
