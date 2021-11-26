@@ -29,5 +29,10 @@
   },
   "devDependencies": {
     "@types/jest": "^27.0.3"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "helpdesk/cypress/"
+    ]
   }
 }
