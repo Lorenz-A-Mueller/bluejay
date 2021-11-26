@@ -15,16 +15,20 @@ jobs:
           postgresql db: ${{ secrets.PGDATABASE }}
           postgresql user: ${{ secrets.PGUSERNAME }}
           postgresql password: ${{ secrets.PGPASSWORD }}
-      - name: Checkout
+      - name: Database
+        # working-directory: packages/api
         uses: actions/checkout@v2
+        build: yarn workspace @bluejay/api migrate up
+        start: node workspace @bluejay/api dev index.js
+
       # Use Cypress GitHub action to run tests
       # https://github.com/cypress-io/github-action
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          install: false
+          # install: false
+
           working-directory: packages/helpdesk
-          build: yarn workspace @bluejay/api migrate up
           start: yarn workspace @bluejay/helpdesk dev
         # Environment variables for Ley and Next.js
         # to be able to connect to the database
