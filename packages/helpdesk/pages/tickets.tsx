@@ -262,7 +262,7 @@ export default function Tickets(props: TicketsProps) {
           <p style={{ color: 'white' }}>
             {'first_name' in employee && employee.first_name}
           </p>
-          <button onClick={handleLogOutClick}>
+          <button onClick={handleLogOutClick} data-cy="logout-button">
             <Image src={logoutIcon} alt="a stylized door with an arrow" />
           </button>
         </div>
