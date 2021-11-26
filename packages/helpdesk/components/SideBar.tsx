@@ -147,6 +147,7 @@ export default function SideBar(props: SideBarProps) {
               props.setFilter('none');
               router.push('/data');
             }}
+            cy-data="data-button"
           >
             <Image src={dataIcon} alt="a pie-chart" />
           </button>

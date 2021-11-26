@@ -62,6 +62,7 @@ export default function Home() {
               name="employee_id"
               onChange={(e) => setEmployeeNumberInput(e.currentTarget.value)}
               value={employeeNumberInput}
+              data-cy="employee-id-input"
             />
             <label htmlFor="password">Password</label>
             <input
@@ -70,8 +71,14 @@ export default function Home() {
               onChange={(e) => setEmployeePasswordInput(e.currentTarget.value)}
               value={employeePasswordInput}
               type="password"
+              data-cy="employee-password-input"
             />
-            <button onClick={() => setWasClicked(true)}>SIGN IN</button>
+            <button
+              onClick={() => setWasClicked(true)}
+              data-cy="employee-login-button"
+            >
+              SIGN IN
+            </button>
           </div>
         </div>
       </main>
