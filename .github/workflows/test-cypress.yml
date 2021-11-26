@@ -1,52 +1,21 @@
-name: Cypress tests
-on: [push]
-
 jobs:
-  cypress-run:
-    runs-on: ubuntu-latest
+  test:
+    runs-on: ubuntu-20.04
     steps:
-      # Set up PostgreSQL with this GitHub Action:
-      # https://github.com/Harmon758/postgresql-action
-      - uses: harmon758/postgresql-action@v1
-        with:
-          postgresql version: '13'
-          # Use GitHub Encrypted Secrets for the credentials
-          # https://docs.github.com/en/free-pro-team@latest/actions/reference/encrypted-secrets
-          postgresql db: ${{ secrets.PGDATABASE }}
-          postgresql user: ${{ secrets.PGUSERNAME }}
-          postgresql password: ${{ secrets.PGPASSWORD }}
-      - name: Database
-        # working-directory: packages/api
-        uses: actions/checkout@v2
-        build: yarn workspace @bluejay/api migrate up
-        start: node workspace @bluejay/api dev index.js
+      - uses: actions/checkout@v2
 
-      # Use Cypress GitHub action to run tests
-      # https://github.com/cypress-io/github-action
-      - name: Cypress run
+      # install dependencies using the root folder
+      - name: Install 📦
         uses: cypress-io/github-action@v2
         with:
-          # install: false
+          runTests: false
 
+      # run tests in apps/app-b folder
+      # where its package.json file is located
+      # with "npm start" command
+      - name: Cypress tests 🧪
+        uses: cypress-io/github-action@v2
+        with:
+          install: false
           working-directory: packages/helpdesk
-          start: yarn workspace @bluejay/helpdesk dev
-        # Environment variables for Ley and Next.js
-        # to be able to connect to the database
-        env:
-          PGHOST: localhost
-          PGDATABASE: ${{ secrets.PGDATABASE }}
-          PGUSERNAME: ${{ secrets.PGUSERNAME }}
-          PGPASSWORD: ${{ secrets.PGPASSWORD }}
-
-      # Store any Cypress screenshots on test failure
-      - uses: actions/upload-artifact@v2
-        if: failure()
-        with:
-          name: cypress-screenshots
-          path: cypress/screenshots
-      # Store any Cypress videos on test failure
-      - uses: actions/upload-artifact@v2
-        if: failure()
-        with:
-          name: cypress-videos
-          path: cypress/videos
+          start: yarn dev
