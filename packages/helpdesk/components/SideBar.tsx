@@ -10,7 +10,6 @@ import icon from '../public/icon.png';
 import newMessageIcon from '../public/new-message-icon.jpg';
 import settingsIcon from '../public/settings-icon.png';
 import urgentIcon from '../public/urgent-icon.png';
-import { employeeDataFetch } from '../utils/queries';
 import { sideBarStyles } from '../utils/styles';
 import { SideBarProps } from '../utils/types';
 import useWindowDimensions from '../utils/useWindowDimensions';

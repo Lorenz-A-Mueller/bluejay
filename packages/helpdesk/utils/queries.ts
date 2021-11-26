@@ -5,7 +5,6 @@ export const employeeSessionFetch = async (apiUrl: string) => {
     method: 'POST',
     headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
     credentials: 'include',
-    // credentials: 'same-origin',
     body: JSON.stringify({
       query: `query {
         employeeSession {
@@ -17,26 +16,6 @@ export const employeeSessionFetch = async (apiUrl: string) => {
   });
   return data;
 };
-
-// export const employeeSessionFetch = async (
-//   sessionToken: string,
-//   apiUrl: string,
-// ) => {
-//   const data = await fetch(apiUrl, {
-//     method: 'POST',
-//     headers: { 'Content-Type': 'application/json', cookie: sessionToken },
-//     credentials: 'include',
-//     body: JSON.stringify({
-//       query: `query {
-//         employeeSession {
-//           id
-//           employee_id
-//         }
-//       }`,
-//     }),
-//   });
-//   return data;
-// };
 
 export const employeeDataFetch = async (employeeId: string, apiUrl: string) => {
   console.log('employeeId', employeeId);

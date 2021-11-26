@@ -62,14 +62,9 @@ export default function Tile(props: TileProps) {
         setThisAssigneeName(
           'first_name' in assignedEmployee && assignedEmployee.first_name,
         );
-        // props.employees.find((employee) => "id" in employee && "first_name" in employee && employee.id === props.assigneeId)
-        //   .first_name,
-        // );
       } else {
         setThisAssigneeName('not assigned');
       }
-
-      // ???
       setThisCustomerNumber(
         props.customers.find((customer) => customer.id === props.customerId)!
           .number || '0',
@@ -102,7 +97,7 @@ export default function Tile(props: TileProps) {
           <p>{thisStatusName}</p>
         </div>
         <div className="title-box">
-          <p>{props.title} </p> {/* TODO: show Number of messages */}
+          <p>{props.title} </p>
         </div>
         <div className="ticket-number-box">
           <p>{props.ticketNumber}</p>
@@ -155,15 +150,6 @@ export default function Tile(props: TileProps) {
             width="54px"
             height="54px"
           />
-
-          {/* <img
-            src={
-              thisAssigneeName && thisAssigneeName !== 'not assigned'
-                ? `${thisAssigneeName.toLowerCase()}.png`
-                : 'question-mark-icon.jpg'
-            }
-            alt="a person"
-          /> */}
 
           <div>
             <p>assigned</p>

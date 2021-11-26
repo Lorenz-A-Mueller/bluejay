@@ -473,9 +473,6 @@ export const tileStyles = (screenWidth: number) => css`
           font-size: ${scale[6]}px;
         }
       }
-      /* img {
-        margin-left: ${scale[6]}px;
-      } */
       > div {
         display: flex;
         flex-direction: column;
@@ -488,11 +485,10 @@ export const tileStyles = (screenWidth: number) => css`
 
 export const messagePanelStyles = css`
   position: absolute;
-  right: 16px; // place for scroll-bar??
+  right: 16px; // place for scroll-bar?
   top: ${scale[14]}px;
   width: ${scale[28]}px;
   height: fit-content;
-  /* background-color: pink; */
   z-index: 3;
   background-color: rgba(255, 255, 255, 90%);
   display: flex;
@@ -756,7 +752,6 @@ export const dataStyles = (screenWidth: number) => css`
   width: calc(100vw - ${scale[18]}px);
   height: 100vh;
   background-color: ${lightGray};
-  /* overflow-y: scroll; */
 
   .top-bar {
     display: flex;
@@ -977,13 +972,11 @@ export const ticketReportStyles = css`
 
       .fake-line-container {
         position: relative;
-        /* width: ${scale[30]}px; */
         width: ${scale[28] + scale[16]}px;
         overflow-x: scroll;
 
         .fake-line {
           height: ${scale[8]}px;
-          /* width: ${scale[29]}px; */
           border-bottom: solid ${lightGray} ${scale[2]}px;
         }
         .penultimate {
@@ -1013,7 +1006,6 @@ export const ticketReportStyles = css`
         bottom: 0;
         height: ${scale[8]}px;
         width: ${scale[29]}px;
-        /* background-color: yellow; */
         display: flex;
         align-items: flex-end;
         .date {
@@ -1072,35 +1064,3 @@ export const pieChartContainerStyles = css`
     }
   }
 `;
-/* const scale = {
-  1: 1,
-  2: 2,
-  3: 4,
-  4: 6,
-  5: 8,
-  6: 12,
-  7: 16,
-  8: 20,
-  9: 26,
-  10: 32,
-  11: 40,
-  12: 48,
-  13: 56,
-  14: 68,
-  15: 80,
-  16: 92,
-  17: 108,
-  18: 124,
-  19: 148,
-  20: 172,
-  21: 204,
-  22: 236,
-  23: 284,
-  24: 332,
-  25: 400,
-  26: 512,
-  27: 624,
-  28: 800,
-  29: 1024,
-  30: 1248,
-}; */

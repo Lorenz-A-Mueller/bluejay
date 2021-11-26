@@ -5,6 +5,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          {/* Could create PWA with manifest.json file */}
           {/* <link rel="manifest" href="/manifest.json" /> */}
           <link rel="apple-touch-icon" href="/icon.png" />
           <meta name="theme-color" content="#fff" />

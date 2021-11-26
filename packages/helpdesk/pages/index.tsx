@@ -2,19 +2,17 @@ import { useQuery } from '@apollo/client';
 import { GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/dist/client/router';
 import Head from 'next/head';
-import { useEffect, useState } from 'react';
-import { employeeSessionFetch, logInValidationQuery } from '../utils/queries';
+import { useState } from 'react';
+import { logInValidationQuery } from '../utils/queries';
 import { indexStyles } from '../utils/styles';
 
 export default function Home() {
   const [employeeNumberInput, setEmployeeNumberInput] = useState('');
   const [employeePasswordInput, setEmployeePasswordInput] = useState('');
   const [wasClicked, setWasClicked] = useState(false);
-  // const [accessDenied, setAccessDenied] = useState(false);         TODO: have animation no accessDenied (shake)
   const router = useRouter();
 
   useQuery(logInValidationQuery, {
-    // TODO: set data (first_name of query) in the application interface
     variables: {
       employeeNumber: employeeNumberInput,
       employeePassword: employeePasswordInput,
@@ -24,7 +22,6 @@ export default function Home() {
       setEmployeeNumberInput('');
       setEmployeePasswordInput('');
       console.log('data after login: ', data);
-      // setAccessDenied(false);
       const destination =
         typeof router.query.returnTo === 'string' && router.query.returnTo
           ? router.query.returnTo
@@ -35,7 +32,6 @@ export default function Home() {
     onError: (error) => {
       setEmployeeNumberInput('');
       setEmployeePasswordInput('');
-      // setAccessDenied(true);
       setWasClicked(false);
 
       console.log('error: ', error.message);
@@ -99,26 +95,6 @@ export const getServerSideProps = async (
       },
     };
   }
-
-  // const sessionToken = context.req.cookies.employeeSessionToken;
-  // console.log(
-  //   'context.req.cookies.employeeSessionToken: ',
-  //   context.req.cookies.employeeSessionToken,
-  // );
-  // // const apiUrl = 'https://bluejay-customer-support.herokuapp.com/graphql';
-  // // const apiUrl = 'http://localhost:4000/graphql'
-  // const apiUrl = 'https://bluejay-api.herokuapp.com/graphql';
-  // const res = await employeeSessionFetch(apiUrl);
-  // const data = await res.json();
-
-  // // if (data.data.employeeSession) {
-  // //   return {
-  // //     redirect: {
-  // //       destination: '/tickets',
-  // //       permanent: false,
-  // //     },
-  // //   };
-  // // }
 
   return {
     props: {},

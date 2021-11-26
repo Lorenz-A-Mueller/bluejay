@@ -1,9 +1,7 @@
 import { useLazyQuery, useMutation, useQuery } from '@apollo/client';
-import { GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/dist/client/router';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-// import { initializeApollo } from '../apollo/client'; TODO?
 import MessagePanel from '../components/MessagePanel';
 import SearchBar from '../components/SearchBar';
 import SelectCategory from '../components/SelectCategory';
@@ -50,7 +48,6 @@ export default function Tickets(props: TicketsProps) {
   const [isAdmin, setIsAdmin] = useState(false);
 
   // fetch all Data necessary for associating id keys with corresponding data in tiles
-  // TODO make 1 query out of those
 
   console.log('employee: ', employee);
   console.log('isAdmin: ', isAdmin);
@@ -151,10 +148,10 @@ export default function Tickets(props: TicketsProps) {
       onError: (err) => {
         console.log('err: ', err);
       },
-      // fetchPolicy: 'cache-and-network', // maybe
-      fetchPolicy: 'network-only',
+      // fetchPolicy: 'cache-and-network' should only fetch if there are changes (in contrast to 'network-only')
+      fetchPolicy: 'cache-and-network',
     },
-  ); // TODO error-handling / loading-handling
+  );
 
   // define a ticketErrorMessage that is displayed when tickets cannot be loaded
 
@@ -223,8 +220,6 @@ export default function Tickets(props: TicketsProps) {
       console.log(ongoingTicketData);
       getTickets();
       props.setFilter('');
-
-      // router.push('/');
     },
     fetchPolicy: 'network-only',
   });
@@ -396,99 +391,3 @@ export default function Tickets(props: TicketsProps) {
     </Sidebar>
   );
 }
-
-// ** TESTING
-// export const getServerSideProps = async (
-//   context: GetServerSidePropsContext,
-// ) => {
-// ***
-
-// test -fetch
-
-// const testFetch = async (apiUrl: string) => {
-//   const data = await fetch(apiUrl, {
-//     method: 'GET',
-//     headers: {
-//       Accept: 'application/json',
-//       'Content-Type': 'application/json',
-//       cookie: 'abc',
-//     },
-//     credentials: 'include',
-//   });
-//   return data;
-// };
-// testFetch('https://bluejay-api.herokuapp.com');
-// check whether sessionToken in cookies matches an existing valid token in db
-
-// const sessionToken = context.req.cookies.employeeSessionToken;
-// console.log('context.req.cookies in gssp: ', context.req.cookies);
-// console.log('sessionToken: ', sessionToken);
-// const apiUrl = 'https://bluejay-customer-support.herokuapp.com/graphql';
-// const apiUrl = 'http://localhost:4000/graphql'
-// const apiUrl = 'https://bluejay-api.herokuapp.com/graphql';
-const apiUrl = 'https://bluejay-api.herokuapp.com/graphql';
-// try {
-
-// ****** TESTING HERE
-
-// const employeeSessionFetchRes = await employeeSessionFetch(apiUrl);
-// const employeeSessionFetchData = await employeeSessionFetchRes.json();
-// console.log('employeeSessionFetchData: ', employeeSessionFetchData);
-
-// *******
-
-// comment this out for testing
-
-// if (!employeeSessionFetchData.data.employeeSession) {
-//   return {
-//     redirect: {
-//       destination: '/?returnTo=/tickets',
-//       permanent: false,
-//     },
-//   };
-// }
-
-// TESTING HERE  *******
-
-// if (!employeeSessionFetchData.data.employeeSession) {
-//   return {
-//     props: {
-//       isAdmin: true,
-//       employee: {
-//         id: '1',
-//         first_name: 'Jennifer',
-//         role: 1,
-//       },
-//     },
-//   };
-// }
-
-//********** */
-
-// only if sessions exists in db: fetch data of employee with that session
-
-// const employeeId = employeeSessionFetchData.data.employeeSession.employee_id;
-// const employeeDataFetchRes = await employeeDataFetch(employeeId, apiUrl);
-// const employeeDataFetchData = await employeeDataFetchRes.json();
-
-// after that, fetch the name of that employee's role
-
-//   const roleNameFetchRes = await roleNameFetch(
-//     employeeDataFetchData.data.employee.role,
-//     apiUrl,
-//   );
-//   const roleNameFetchData = await roleNameFetchRes.json();
-
-//   return {
-//     props: {
-//       employee: employeeDataFetchData.data.employee,
-//       isAdmin: roleNameFetchData.data.role.role_name === 'admin',
-//     },
-//   };
-// };
-// catch {
-//   return {
-//     props: {},
-//   };
-// }
-// };

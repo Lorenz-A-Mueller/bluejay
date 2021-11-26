@@ -7,8 +7,6 @@ import { useState } from 'react';
 import { globalStyles } from '../utils/styles';
 
 const link = createHttpLink({
-  // uri: 'https://bluejay-customer-support.herokuapp.com/graphql',
-  // uri: 'http://localhost:4000/graphql',
   uri: 'https://bluejay-api.herokuapp.com/graphql',
   credentials: 'include',
 });

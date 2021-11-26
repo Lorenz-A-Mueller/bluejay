@@ -131,9 +131,7 @@ export type SideBarProps = {
 };
 
 export type TicketsProps = {
-  // employee: Employee;
   filter: string;
-  // isAdmin: boolean;
   setFilter: React.Dispatch<React.SetStateAction<string>>;
 };
 

@@ -36,8 +36,6 @@ export default function MessagePanelHeader(props: MessagePanelHeaderProps) {
       },
     });
 
-  // useEffect(() => {}, [getMessagePanelInfo]);
-
   useEffect(() => {
     if (props.ticket) {
       switch (props.ticket.status) {
