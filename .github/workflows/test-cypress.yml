@@ -22,6 +22,8 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
+          install: false
+          working-directory: packages/helpdesk
           build: yarn workspace @bluejay/api migrate up
           start: yarn workspace @bluejay/helpdesk dev
         # Environment variables for Ley and Next.js
