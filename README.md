@@ -12,12 +12,10 @@ A full-scale customer-support-system for the fictional airline "BlueJay". Custom
 
 - Help-Desk-App (Next.js):  
   https://bluejay-helpdesk.herokuapp.com/
-- Mobile-App (React Native with Expo):
+- Mobile-App (React Native with Expo):  
   https://expo.dev/@lorenz-arthur/bluejay-premium-app
 - API (GraphQL, Apollo-Server-Express):  
   https://bluejay-api.herokuapp.com/graphql
-
-<br/>
 
 ### Go to
 
