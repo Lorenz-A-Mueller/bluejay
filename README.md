@@ -8,6 +8,7 @@
 A full-scale customer-support-system for the fictional airline "BlueJay". Customers can use the mobile app to get in touch with customer support; airline staff can log-in to the help-desk web-app and interact with tickets issued by customers.
 
 </br>
+</br>
 
 - Help-Desk-App (Next.js):  
   https://bluejay-helpdesk.herokuapp.com/
@@ -58,10 +59,14 @@ A full-scale customer-support-system for the fictional airline "BlueJay". Custom
 
 <br />
 
+<p float="left">
+
 <img src="screenshots/mobile_1.jpg" alt="splash-screen - mobile app" width="150"/>
 <img src="screenshots/mobile_2.jpg" alt="log-in-screen - mobile app" width="150"/>
 <img src="screenshots/mobile_3.jpg" alt="main-screen - mobile app" width="150"/>
 <img src="screenshots/mobile_4.jpg" alt="open correspondence- mobile app" width="150"/>
+
+</p>
 
 <br />
 
@@ -69,7 +74,7 @@ A full-scale customer-support-system for the fictional airline "BlueJay". Custom
 
 <br />
 
-<img src="screenshots/drawsql_1.png" alt="open correspondence- mobile app" width="300"/>
+<img src="screenshots/drawsql_1.png" alt="open correspondence- mobile app"/>
 
 <br />
 
@@ -77,7 +82,7 @@ A full-scale customer-support-system for the fictional airline "BlueJay". Custom
 
 <br />
 
-<img src="screenshots/figma_1.png" alt="open correspondence- mobile app" width="300"/>
+<img src="screenshots/figma_1.png" alt="open correspondence- mobile app" />
 
 <br />
 
