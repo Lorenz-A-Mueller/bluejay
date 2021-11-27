@@ -13,9 +13,6 @@ jobs:
         with:
           runTests: false
 
-      # run tests in apps/app-b folder
-      # where its package.json file is located
-      # with "npm start" command
       - name: Cypress tests 🧪
         uses: cypress-io/github-action@v2
         with:
