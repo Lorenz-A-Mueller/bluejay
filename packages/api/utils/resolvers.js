@@ -1,7 +1,6 @@
 const {
   AuthenticationError,
   UserInputError,
-  ApolloError,
 } = require('apollo-server-errors');
 const crypto = require('node:crypto');
 const { hashPassword, verifyPassword } = require('./auth.js');
@@ -98,8 +97,6 @@ exports.resolvers = {
           const isProduction = process.env.NODE_ENV === 'production';
           const maxAge = 60 * 5;
 
-          console.log('newSession.token (customer): ', newSession.token);
-
           // set token as cookie
           context.res.cookie('customerSessionToken', newSession.token, {
             httpOnly: true,
@@ -112,7 +109,6 @@ exports.resolvers = {
           });
 
           return customerWithoutHashedPassword;
-          // context.res.sendStatus(200); // ???
         }
 
         throw new AuthenticationError(
@@ -127,12 +123,10 @@ exports.resolvers = {
       if (args.search.id) return getEmployeeById(args.search.id);
       if (args.search.number) {
         if (!args.search.number[0] || !args.search.number[1]) {
-          console.log('this');
           throw new UserInputError(
             'Employee Number and Password are required!',
           );
         }
-        console.log('here');
 
         const hashedPasswordInDb = await getEmployeeByNumberWithHashedPassword(
           args.search.number[0],
@@ -156,8 +150,6 @@ exports.resolvers = {
 
           const token = crypto.randomBytes(64).toString('base64');
 
-          console.log('token: ', token);
-
           // safe token and client id as a session in the DB
 
           const newSession = await createEmployeeSession(
@@ -167,21 +159,16 @@ exports.resolvers = {
 
           // set token as cookie
           const isProduction = process.env.NODE_ENV === 'production';
-          const maxAge = 60 * 60 * 1000; // 1 hour minutes
-          // console.log('expires: ', new Date(Date.now() + maxAge * 1000));
-          console.log('isProduction: ', isProduction);
-          console.log('newSession.token: ', newSession.token);
+          const maxAge = 60 * 60 * 1000; // 1 hour
           context.res.cookie('employeeSessionToken', newSession.token, {
             httpOnly: true,
             sameSite: 'none',
             secure: isProduction,
             path: '/',
-            // maxAge: maxAge,
             expires: new Date(Date.now() + maxAge),
           });
 
           return employeeWithoutHashedPassword;
-          // context.res.sendStatus(200); // ???
         }
         throw new AuthenticationError(
           'Employee Number / Password combination did not match!',
@@ -195,13 +182,8 @@ exports.resolvers = {
       return getValidCustomerSessionByToken(sessionToken);
     },
     employeeSession: async (parent, args, context) => {
-      // context.req.header.cookie only includes the sessionCookie (parsed already via next.js)
-      // console.log('context: ', context);
-
-      console.log('context.req.cookies: ', context.req.cookies);
       // context.req.cookies is the object parsed by cookie-parser
       const sessionCookie = context.req.cookies.employeeSessionToken;
-      console.log('sessionCookie: ', sessionCookie);
       const validationResult = await getValidEmployeeSessionByToken(
         sessionCookie,
       );

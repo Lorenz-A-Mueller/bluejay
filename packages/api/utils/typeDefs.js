@@ -101,11 +101,11 @@ exports.typeDefs = gql`
     id: ID
     ticket_number: String
     status: ID
-    last_response: String #????
+    last_response: String
     customer_id: ID
     category: ID
     priority: ID
-    created: String #???
+    created: String
     assignee_id: ID
     title: String
   }

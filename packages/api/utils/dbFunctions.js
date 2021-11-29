@@ -102,7 +102,6 @@ exports.getEmployeeByNumberWithHashedPassword = async (number) => {
   SELECT * FROM employees
   WHERE number=${number};
   `;
-  console.log('employee[0]: ', employee[0]);
   return employee[0];
 };
 
@@ -125,7 +124,6 @@ exports.createEmployeeSession = async (token, id) => {
   (${token}, ${id})
   RETURNING *
   `;
-  console.log('session[0] inserted: ', session[0]);
   return session[0];
 };
 
@@ -140,7 +138,6 @@ exports.deleteExpiredCustomerSessions = async () => {
 };
 
 exports.getValidCustomerSessionByToken = async (token) => {
-  console.log('token in fn: ', token);
   if (!token) return undefined;
   const customerSession = await sql`
   SELECT * FROM customer_sessions
@@ -148,12 +145,10 @@ exports.getValidCustomerSessionByToken = async (token) => {
   token = ${token} AND
   expiry_timestamp > NOW()
   `;
-  console.log('customerSession:', customerSession[0]);
   return customerSession[0];
 };
 
 exports.getValidEmployeeSessionByToken = async (token) => {
-  console.log('token in fn: ', token);
   if (!token) return undefined;
   const employeeSession = await sql`
   SELECT * FROM employee_sessions
@@ -161,7 +156,6 @@ exports.getValidEmployeeSessionByToken = async (token) => {
   token = ${token} AND
   expiry_timestamp > NOW()
   `;
-  console.log('employeeSession[0]: ', employeeSession[0]);
   return employeeSession[0];
 };
 
@@ -416,6 +410,5 @@ exports.getCustomerByEmail = async (email) => {
   FROM customers
   WHERE email = ${email}
   `;
-  console.log('customer[0]: ', customer[0]);
   return customer[0];
 };
