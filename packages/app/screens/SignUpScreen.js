@@ -25,7 +25,6 @@ export default function SignUp() {
   const [passwordInput, setPasswordInput] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [hasSignedUp, setHasSignedUp] = useState(false);
-  // const [wasPressed, setWasPressed] = useState(false);
   const navigation = useNavigation();
 
   const [createCustomer, { loading, error, data }] = useMutation(

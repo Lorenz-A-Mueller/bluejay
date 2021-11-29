@@ -17,7 +17,7 @@ import {
   validateSessionTokenQuery,
 } from '../utils/queries';
 
-export default function SignIn(props) {
+export default function SignIn() {
   const [accessDenied, setAccessDenied] = useState(false);
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
@@ -33,8 +33,8 @@ export default function SignIn(props) {
     onCompleted: () => {
       navigation.navigate('main-screen');
     },
-    onError: () => {
-      // navigation.navigate('sign-in');
+    onError: (err) => {
+      console.log('error: ', err);
     },
     fetchPolicy: 'network-only',
   });

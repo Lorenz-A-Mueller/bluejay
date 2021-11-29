@@ -1,14 +1,6 @@
 import { Picker } from '@react-native-picker/picker';
-import { useNavigation } from '@react-navigation/native';
-import React, { useState } from 'react';
-import {
-  Image,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import React from 'react';
+import { StyleSheet } from 'react-native';
 
 export default function CategorySelect(props) {
   return (

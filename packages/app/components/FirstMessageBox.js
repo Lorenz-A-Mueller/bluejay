@@ -1,8 +1,5 @@
-import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import {
-  Image,
-  KeyboardAvoidingView,
   StyleSheet,
   Text,
   TextInput,

@@ -12,10 +12,7 @@ import {
 } from 'react-native';
 import mail_icon from '../assets/mail-icon.png';
 import telephone_icon from '../assets/telephone-icon.png';
-import {
-  getTicketByCustomerIdQuery,
-  validateSessionTokenQuery,
-} from '../utils/queries';
+import { validateSessionTokenQuery } from '../utils/queries';
 import CorrespondenceBox from './CorrespondenceBox';
 import FirstMessageBox from './FirstMessageBox';
 

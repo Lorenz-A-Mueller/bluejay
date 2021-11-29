@@ -1,9 +1,6 @@
-import { useLazyQuery, useMutation } from '@apollo/client';
-import { useNavigation } from '@react-navigation/native';
-import React, { useEffect, useState } from 'react';
+import { useMutation } from '@apollo/client';
+import React, { useState } from 'react';
 import {
-  Image,
-  PickerIOSComponent,
   StyleSheet,
   Text,
   TextInput,
@@ -18,25 +15,6 @@ import PastMessage from './PastMessage';
 
 export default function CorrespondenceBox(props) {
   const [messageText, setMessageText] = useState('');
-  // const [messages, setMessages] = useState([]);
-
-  console.log('props.messages', props.messages);
-
-  // useEffect(() => {
-  //   getMessages();
-  // }, []);
-
-  // const [getMessages, { data: getMessagesQueryData }] = useLazyQuery(
-  //   getMessagesQuery,
-  //   {
-  //     variables: { ticketID: props.ticketData.id },
-  //     onCompleted: () => {
-  //       console.log(getMessagesQueryData);
-  //       setMessages(getMessagesQueryData.messages);
-  //     },
-  //     fetchPolicy: 'network-only',
-  //   },
-  // );
 
   const handleSendFurtherMessage = () => {
     createNewMessage();
@@ -58,9 +36,6 @@ export default function CorrespondenceBox(props) {
   const [setLastResponse] = useMutation(changeTicketLastResponseMutation, {
     variables: {
       ticketID: props.ticketData.id,
-    },
-    onCompleted: (thisData) => {
-      console.log('setLastResponseData: ', thisData);
     },
     fetchPolicy: 'network-only',
   });
@@ -84,7 +59,6 @@ export default function CorrespondenceBox(props) {
         style={style.message_input}
         placeholder="Your Message"
         multiline={true}
-        // numberOfLines={10}
         maxLength={1000}
         onChangeText={(text) => setMessageText(text)}
         value={messageText}
@@ -104,12 +78,9 @@ const style = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: 284,
-    // height: 512,
-    // height: 2000,
     backgroundColor: 'white',
     marginTop: 48,
     alignItems: 'center',
-    // flex: 1,
   },
 
   title_box: {

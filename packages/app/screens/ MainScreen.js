@@ -16,7 +16,7 @@ import {
   validateSessionTokenWhenSendingQuery,
 } from '../utils/queries';
 
-export default function MainScreen(props) {
+export default function MainScreen() {
   const [showContactBox, setShowContactBox] = useState(false);
   const [chosenCategory, setChosenCategory] = useState('');
   const [chosenTitle, setChosenTitle] = useState('');
@@ -41,10 +41,6 @@ export default function MainScreen(props) {
           navigation.navigate('sign-in');
         } else {
           // if successful, get customer first name for displaying
-          console.log(
-            'validateSessionTokenQueryData.customerSession.customer_id: ',
-            validateSessionTokenQueryData.customerSession.customer_id,
-          );
           setCustomerId(
             validateSessionTokenQueryData.customerSession.customer_id,
           );
@@ -109,7 +105,6 @@ export default function MainScreen(props) {
         setIsCompletedAfterSending(true);
         setTimeout(() => {
           setIsCompletedAfterSending(false);
-          // getTicketByCustomerId();
         }, 2000);
       }, 1000);
     },
@@ -123,7 +118,6 @@ export default function MainScreen(props) {
   });
 
   useEffect(() => {
-    console.log('customerId: ', customerId);
     if (customerId) {
       getTicketByCustomerId();
     }
@@ -154,15 +148,10 @@ export default function MainScreen(props) {
         customerID: customerId,
       },
       onCompleted: () => {
-        console.log('TICKET - data in ContactBox', getTicketByCustomerIdData);
         setTicketData(getTicketByCustomerIdData.ticket || {});
-        console.log(
-          'getTicketByCustomerIdData.ticket: ',
-          getTicketByCustomerIdData.ticket,
-        );
       },
-      onError: () => {
-        console.log('here');
+      onError: (err) => {
+        console.log('error: ', err);
       },
 
       fetchPolicy: 'network-only',
@@ -170,10 +159,7 @@ export default function MainScreen(props) {
 
   if (isLoadingAfterSending || isCompletedAfterSending) {
     return (
-      <ScrollView
-      // ref={(ref) => (scrollView = ref)}
-      // onContentSizeChange={() => scrollView.scrollToEnd({ animated: true })}
-      >
+      <ScrollView>
         <Image source={transparent_logo} style={style.logo} />
         <Text style={style.header}>
           Welcome,{' '}

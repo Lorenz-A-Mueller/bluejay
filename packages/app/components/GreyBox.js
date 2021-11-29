@@ -8,31 +8,17 @@ import covid_icon from '../assets/covid-icon.png';
 import globe_icon from '../assets/globe-icon.png';
 import plane_icon from '../assets/plane-icon.png';
 import settings_icon from '../assets/settings-icon.png';
-import {
-  deleteSessionMutation,
-  getTicketByCustomerIdQuery,
-} from '../utils/queries';
+import { deleteSessionMutation } from '../utils/queries';
 
 export default function GreyBox(props) {
   const navigation = useNavigation();
 
-  console.log('props.messages in gray box: ', props.messages);
-
-  useEffect(() => {
-    // getTicketByCustomerId();
-  }, []);
-
   const [deleteSession] = useMutation(deleteSessionMutation, {
     onCompleted: (data) => {
       // for data to be displayed, have to pass it here (not destructured two lines above)
-      console.log('deleteSessionMutation', data);
     },
     fetchPolicy: 'network-only',
   });
-
-  // **
-
-  //** */
 
   const handleLogOutPress = () => {
     deleteSession();

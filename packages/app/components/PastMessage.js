@@ -1,5 +1,4 @@
 import { useLazyQuery } from '@apollo/client';
-import { isConstValueNode } from 'graphql';
 import React, { useEffect, useState } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { getEmployeeFirstNameQuery } from '../utils/queries';
@@ -14,10 +13,6 @@ export default function PastMessage(props) {
     if (props.messageData.created) {
       setCreated(transformTimestampIntoDatetime(props.messageData.created));
     }
-    console.log(
-      'props.messageData.responder_id',
-      props.messageData.responder_id,
-    );
     if (props.messageData.responder_id) {
       getEmployeeFirstName();
     }
